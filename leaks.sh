@@ -1,0 +1,1 @@
+leaks --atExit -- ./a.out 
