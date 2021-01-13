@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/13 10:35:15 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/13 16:01:37 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ void	ft_parsing(char *file, t_pars *t_pars)
 	}
 	while ((gnl = get_next_line(fd, &line)) != 0)
 	{
-		if (gnl == -1)
+		if (gnl == -1 || t_pars->error)
 		{
 			ft_error("Problem encountered while parsing", t_pars);
 			return ;
 		}
-		printf("%s\n", line);
+		ft_pars_res(line, t_pars);
 		free(line);
 	}
-	close(fd);	
+	close(fd);
+	printf("RES X %d\n", t_pars->resx);
+	printf("RES Y %d\n", t_pars->resy);
+	//Check after pars if t_pars is correctly fill else -> error++
 }
 
 void	ft_check_file(char *file, t_pars *t_pars)

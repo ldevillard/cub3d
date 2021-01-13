@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/13 10:12:47 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/13 15:54:12 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,16 @@ typedef struct	s_pars
 	bool	player;
 	char	pl_o;
 	int		error;
+	int		nbrline;
+	int		sizeline;
 }				t_pars;
 
 void	ft_init_struct(t_pars *t_pars);
 void	ft_check_file(char *file, t_pars *t_pars);
 void	ft_error(char *str, t_pars *t_pars);
 void	ft_parsing(char *file, t_pars *t_pars);
+void	ft_pars_res(char *str, t_pars *t_pars);
+int		ft_check_line(char *str);
+int		ft_pass(char *str, int i);
 
 #endif

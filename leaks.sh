@@ -1,1 +1,1 @@
-leaks --atExit -- ./a.out 
+leaks --atExit -- ./cub3D 
