@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_errors.c                                        :+:      :+:    :+:   */
+/*   ft_struct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 13:47:09 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/13 10:39:46 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
+/*   Updated: 2021/01/13 10:39:33 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_error(char *str, t_pars *t_pars)
+void	ft_init_struct(t_pars *t_pars)
 {
-	printf("Error\n%s\n", str);
-	t_pars->error = 1;
+	t_pars->resx = 0;
+	t_pars->resy = 0;
+
 }

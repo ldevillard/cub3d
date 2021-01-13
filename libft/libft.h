@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 17:20:57 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/12 14:38:11 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/13 09:51:15 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	ft_putnbr(int n);
 char	*ft_u_itoa(unsigned int n);
-int		get_next_line(char **line);
+int		get_next_line(int fd, char **line);
 char	*ft_itoa_base(unsigned int nbr, int base);
 
 #endif
