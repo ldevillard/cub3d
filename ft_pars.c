@@ -6,11 +6,24 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/13 16:01:37 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 10:24:38 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_load_pars(char *str, t_pars *t_pars)
+{
+	if (t_pars->sizeline > 0 && (t_pars->north == NULL || t_pars->south == NULL ||
+				t_pars->west == NULL || t_pars->east == NULL || t_pars->sprite == NULL))
+		t_pars->error++;
+	if ((t_pars->north != NULL || t_pars->south != NULL || t_pars->west != NULL ||
+				t_pars->east != NULL || t_pars->sprite != NULL) && (t_pars->resx == 0
+				|| t_pars->resy == 0))
+		t_pars->error++;
+	ft_pars_res(str, t_pars);
+	ft_pars_text(str, t_pars);
+}
 
 void	ft_parsing(char *file, t_pars *t_pars)
 {
@@ -36,12 +49,17 @@ void	ft_parsing(char *file, t_pars *t_pars)
 			ft_error("Problem encountered while parsing", t_pars);
 			return ;
 		}
-		ft_pars_res(line, t_pars);
+		ft_load_pars(line, t_pars);
 		free(line);
 	}
 	close(fd);
 	printf("RES X %d\n", t_pars->resx);
 	printf("RES Y %d\n", t_pars->resy);
+	printf("NO : %s\n", t_pars->north);
+	printf("SO : %s\n", t_pars->south);
+	printf("EA : %s\n", t_pars->east);
+	printf("WE : %s\n", t_pars->west);
+	printf("S : %s\n", t_pars->sprite);
 	//Check after pars if t_pars is correctly fill else -> error++
 }
 
@@ -85,4 +103,5 @@ int		main(int ac, char **av)
 	}
 	else
 		printf("Error\nWrong number of arguments\n");
+	return (0);
 }

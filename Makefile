@@ -5,7 +5,8 @@ NAME = cub3D
 SRCS = ft_errors.c \
 		ft_pars.c \
 		ft_struct.c \
-		ft_pars_res.c
+		ft_pars_res.c \
+		ft_pars_text.c 
 
 CC = gcc
 
