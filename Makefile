@@ -6,7 +6,8 @@ SRCS = ft_errors.c \
 		ft_pars.c \
 		ft_struct.c \
 		ft_pars_res.c \
-		ft_pars_text.c 
+		ft_pars_text.c \
+		ft_pars_color.c
 
 CC = gcc
 

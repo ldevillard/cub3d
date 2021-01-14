@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/14 10:24:31 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 11:50:10 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 void	ft_init_struct(t_pars *t_pars)
 {
+	int i;
+	
+	i = 0;
+	while (i < 3)
+	{
+		t_pars->c_color[i] = 0;
+		t_pars->f_color[i] = 0;
+		i++;
+	}
 	t_pars->resx = 0;
 	t_pars->resy = 0;
 	t_pars->error = 0;

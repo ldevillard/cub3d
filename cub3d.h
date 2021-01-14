@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/14 10:24:37 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 12:00:46 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct	s_pars
 	char	*west;
 	char	*east;
 	char	*sprite;
-	char	*f_color;
-	char	*c_color;
+	int		f_color[3];
+	int		c_color[3];
 	bool	miss_element;
 	bool	dup_element;
 	bool	wrong_char;
@@ -54,5 +54,6 @@ int		ft_pass(char *str, int i);
 void	ft_load_pars(char *str, t_pars *t_pars);
 void	ft_pars_text(char *str, t_pars *t_pars);
 void	ft_set_text(char *str, char **text, t_pars *t_pars);
+void	ft_pars_color(char *str, t_pars *t_pars);
 
 #endif
