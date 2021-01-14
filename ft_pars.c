@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/14 11:51:52 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 13:27:52 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ void	ft_parsing(char *file, t_pars *t_pars)
 		if (gnl == -1 || t_pars->error)
 		{
 			ft_error("Problem encountered while parsing", t_pars);
+			free(line);
 			return ;
 		}
 		ft_load_pars(line, t_pars);
 		free(line);
 	}
+	free(line);
 	close(fd);
 	printf("RES X %d\n", t_pars->resx);
 	printf("RES Y %d\n", t_pars->resy);
@@ -106,5 +108,7 @@ int		main(int ac, char **av)
 	}
 	else
 		printf("Error\nWrong number of arguments\n");
+	if (!t_pars.error)
+		ft_free(&t_pars);
 	return (0);
 }

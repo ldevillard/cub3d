@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/14 12:00:46 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 12:26:02 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct	s_pars
 	int		error;
 	int		nbrline;
 	int		sizeline;
-	char	**map;
+	//char	**map;
 }				t_pars;
 
 void	ft_init_struct(t_pars *t_pars);
@@ -55,5 +55,6 @@ void	ft_load_pars(char *str, t_pars *t_pars);
 void	ft_pars_text(char *str, t_pars *t_pars);
 void	ft_set_text(char *str, char **text, t_pars *t_pars);
 void	ft_pars_color(char *str, t_pars *t_pars);
+void	ft_free(t_pars *t_pars);
 
 #endif
