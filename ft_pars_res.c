@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:08:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/14 10:24:28 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 09:50:21 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,27 @@ int		ft_pass(char *str, int i)
 	return (i);
 }
 
-void	ft_pars_res(char *str, t_pars *t_pars)
+void	ft_pars_res(char *str, t_pars *pars)
 {
 	int i;
 
 	i = 0;
 	if (str[i] == 'R')
 	{
-		if (t_pars-> resx && t_pars->resy)
-			t_pars->error++;
+		if (pars->resx && pars->resy)
+			pars->error++;
 		if (str[1] != ' ' || !ft_check_line(&str[1]))
-			t_pars->error++;
-		t_pars->resx = ft_atoi(&str[1]);
+			pars->error++;
+		pars->resx = ft_atoi(&str[1]);
 		i = ft_pass(str, i);
-		t_pars->resy = ft_atoi(&str[i]);
-		if (t_pars->resx <= 0 || t_pars->resy <= 0)
-			t_pars->error++;
+		pars->resy = ft_atoi(&str[i]);
+		if (pars->resx <= 0 || pars->resy <= 0)
+			pars->error++;
 		i = ft_pass(str, i);
 		while (str[i])
 		{
 			if (ft_isdigit(str[i]))
-				t_pars->error++;
+				pars->error++;
 			i++;
 		}
 	}

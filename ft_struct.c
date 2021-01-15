@@ -6,31 +6,33 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/14 11:50:10 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 10:14:39 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_init_struct(t_pars *t_pars)
+void	ft_init_struct(t_pars *pars)
 {
 	int i;
-	
+
 	i = 0;
 	while (i < 3)
 	{
-		t_pars->c_color[i] = 0;
-		t_pars->f_color[i] = 0;
+		pars->c_color[i] = 0;
+		pars->f_color[i] = 0;
 		i++;
 	}
-	t_pars->resx = 0;
-	t_pars->resy = 0;
-	t_pars->error = 0;
-	t_pars->north = NULL;
-	t_pars->south = NULL;
-	t_pars->east = NULL;
-	t_pars->west = NULL;
-	t_pars->sprite = NULL;
-	t_pars->nbrline = 0;
-	t_pars->sizeline = 0;
+	pars->resx = 0;
+	pars->resy = 0;
+	pars->error = 0;
+	pars->north = NULL;
+	pars->south = NULL;
+	pars->east = NULL;
+	pars->west = NULL;
+	pars->sprite = NULL;
+	pars->nbrline = 0;
+	pars->sizeline = 0;
+	pars->f_fill = false;
+	pars->c_fill = false;
 }
