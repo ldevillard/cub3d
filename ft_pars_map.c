@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:46:50 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 15:45:50 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 16:00:07 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_fill_map(char *str, t_pars *pars)
 		j++;
 	}
 	pars->map[i][j] = '\0';
-	ft_putchar('*');
 	printf("%s\n", pars->map[i]);
 	i++;
 }
@@ -51,8 +50,9 @@ void	ft_pars_map(char *file, t_pars *pars)
 	fd = open(file, O_RDONLY);
 	if (!(pars->map = malloc(sizeof(char *) * pars->nbrline)))
 		ft_error("Malloc fail", pars);
-	while ((gnl = get_next_line(fd, &line)) != 0)
+	while (gnl != 0)
 	{
+		gnl = get_next_line(fd, &line);
 		if (ft_is_map(line))
 		{
 			pars->is_map = true;
@@ -63,7 +63,6 @@ void	ft_pars_map(char *file, t_pars *pars)
 				ft_error("Missing line in map", pars);
 		free(line);
 	}
-	free(line);
 	close(fd);
 }
 
