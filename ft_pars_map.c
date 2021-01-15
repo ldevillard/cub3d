@@ -6,15 +6,65 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:46:50 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 10:41:31 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 15:45:50 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	ft_fill_map(char *str, t_pars *pars)
+{
+	int j;
+	static int i = 0;
+
+	j = 0;
+	pars->map[i] = NULL;
+	if (!(pars->map[i] = malloc(sizeof(char) * pars->sizeline + 1)))
+		ft_error("Malloc fail", pars);
+	while (str[j])
+	{
+		//Faire aussi la conversion 0 du perso apres check son orientation
+		if (str[j] == ' ')
+			pars->map[i][j] = '1';
+		else
+			pars->map[i][j] = str[j];
+		j++;
+	}
+	while (j <= (pars->sizeline - 1))
+	{
+		pars->map[i][j] = '1';
+		j++;
+	}
+	pars->map[i][j] = '\0';
+	ft_putchar('*');
+	printf("%s\n", pars->map[i]);
+	i++;
+}
+
 void	ft_pars_map(char *file, t_pars *pars)
 {
+	char	*line;
+	int		fd;
+	int		gnl;
 	
+	gnl = 1;
+	fd = open(file, O_RDONLY);
+	if (!(pars->map = malloc(sizeof(char *) * pars->nbrline)))
+		ft_error("Malloc fail", pars);
+	while ((gnl = get_next_line(fd, &line)) != 0)
+	{
+		if (ft_is_map(line))
+		{
+			pars->is_map = true;
+			ft_fill_map(line, pars);
+		}
+		if (pars->is_map == true)
+			if (!ft_void_line(line))
+				ft_error("Missing line in map", pars);
+		free(line);
+	}
+	free(line);
+	close(fd);
 }
 
 int		ft_is_map(char *str)

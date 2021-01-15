@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_struct.c                                        :+:      :+:    :+:   */
+/*   ft_pars_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 15:07:44 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2021/01/15 14:24:08 by ldevilla          #+#    #+#             */
+/*   Updated: 2021/01/15 14:27:17 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_init_struct(t_pars *pars)
+int     ft_void_line(char *str)
 {
-	int i;
+    int i;
 
-	i = 0;
-	while (i < 3)
-	{
-		pars->c_color[i] = 0;
-		pars->f_color[i] = 0;
-		i++;
-	}
-	pars->resx = 0;
-	pars->resy = 0;
-	pars->error = 0;
-	pars->north = NULL;
-	pars->south = NULL;
-	pars->east = NULL;
-	pars->west = NULL;
-	pars->sprite = NULL;
-	pars->nbrline = 0;
-	pars->sizeline = 0;
-	pars->f_fill = false;
-	pars->c_fill = false;
-	pars->map = NULL;
-	pars->is_map = false;
+    i = 0;
+    while (str[i])
+    {
+        if (str[i] != ' ' && str[i] != '\t' && str[i] != '\v'
+            && str[i] != '\n' && str[i] != '\r' && str[i] != '\f')
+            return (1);
+        i++;
+    }
+    return (0);
 }

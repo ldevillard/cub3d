@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 10:42:44 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 15:43:38 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ int		main(int ac, char **av)
 	}
 	else
 		printf("Error\nWrong number of arguments\n");
-	if (!pars.error) //Just for a moment
-		ft_free(&pars); //Just for a moment
+	ft_free(&pars); //Just for a moment
 	return (0);
 }

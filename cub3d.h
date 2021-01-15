@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 10:41:46 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 15:07:39 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct	s_pars
 	int		error;
 	int		nbrline;
 	int		sizeline;
-	//char	**map;
+	char	**map;
+	bool	is_map;
 }				t_pars;
 
 void			ft_init_struct(t_pars *pars);
@@ -61,5 +62,8 @@ void			ft_free(t_pars *pars);
 int				ft_is_map(char *str);
 void			ft_check_map(char *str, t_pars *pars);
 void			ft_pars_map(char *file, t_pars *pars);
+int				ft_void_line(char *str);
+void			ft_valid_map(char *str, t_pars *pars);
+void			ft_fill_map(char *str, t_pars *pars);
 
 #endif

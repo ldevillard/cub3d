@@ -8,7 +8,8 @@ SRCS = ft_errors.c \
 		ft_pars_res.c \
 		ft_pars_text.c \
 		ft_pars_color.c \
-		ft_pars_map.c
+		ft_pars_map.c \
+		ft_pars_utils.c
 
 CC = gcc
 
