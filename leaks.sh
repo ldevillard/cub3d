@@ -1,1 +1,1 @@
-leaks -atExit -- ./cub3D test.cub 
+leaks -atExit -- ./cub3D test.cub

@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 09:56:54 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 10:42:44 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ void	ft_parsing(char *file, t_pars *pars)
 	}
 	free(line);
 	close(fd);
+	if (!pars->nbrline || !pars->sizeline)
+		ft_error("Missing map", pars);
+	if (!pars->error)
+		ft_pars_map(file, pars);
+
+	
+	//DISPLAY
 	printf("RES X %d\n", pars->resx);
 	printf("RES Y %d\n", pars->resy);
 	printf("NO : %s\n", pars->north);
@@ -67,7 +74,9 @@ void	ft_parsing(char *file, t_pars *pars)
 	printf("S : %s\n", pars->sprite);
 	printf("F : %d,%d,%d\n", pars->f_color[0], pars->f_color[1], pars->f_color[2]);
 	printf("C : %d,%d,%d\n", pars->c_color[0], pars->c_color[1], pars->c_color[2]);
-	//Check after pars if t_pars is correctly fill else -> error++
+	
+	printf("SIZELINE : %d\n", pars->sizeline);
+	printf("NBRLINE : %d\n", pars->nbrline);
 }
 
 void	ft_check_file(char *file, t_pars *pars)

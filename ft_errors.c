@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:47:09 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 09:24:16 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 10:37:06 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_error(char *str, t_pars *pars)
 		free(pars->west);
 	if (pars->sprite)
 		free(pars->sprite);
+	pars->error++;
 }
 
 void	ft_free(t_pars *pars)

@@ -6,11 +6,16 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:46:50 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 10:16:39 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 10:41:31 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_pars_map(char *file, t_pars *pars)
+{
+	
+}
 
 int		ft_is_map(char *str)
 {
@@ -37,10 +42,16 @@ int		ft_is_map(char *str)
 
 void	ft_check_map(char *str, t_pars *pars)
 {
-	if (ft_is_map(str) && (!pars->resx || !pars->resy \
-					|| !pars->north || !pars->south || !pars->east \
-					|| !pars->west || !pars->sprite
-					|| pars->c_fill == false 
-					|| pars->f_fill == false))
-		pars->error++;
+	if (ft_is_map(str))
+	{
+		if (!pars->resx || !pars->resy \
+			|| !pars->north || !pars->south || !pars->east \
+			|| !pars->west || !pars->sprite
+			|| pars->c_fill == false 
+			|| pars->f_fill == false)
+			pars->error++;
+		else if (pars->sizeline < (int)ft_strlen(str))
+			pars->sizeline = ft_strlen(str);
+		pars->nbrline++;
+	}
 }

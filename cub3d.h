@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 10:14:09 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 10:41:46 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void			ft_pars_color(char *str, t_pars *pars);
 void			ft_free(t_pars *pars);
 int				ft_is_map(char *str);
 void			ft_check_map(char *str, t_pars *pars);
+void			ft_pars_map(char *file, t_pars *pars);
 
 #endif
