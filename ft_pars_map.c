@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:46:50 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 14:06:52 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 14:27:53 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	ft_fill_map(char *str, t_pars *pars)
 	pars->m_line++;
 	while (str[j])
 	{
+		if (ft_ccheck("NSEW", str[j]))
+		{
+			pars->player++;
+			pars->px = j + 1;
+			pars->py = i + 1;
+			pars->po = str[j];
+			str[j] = '0';
+		}
 		if (str[j] == ' ' || str[j] == '\t')
 			pars->map[i][j] = '1';
 		else

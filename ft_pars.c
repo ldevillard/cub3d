@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 14:05:30 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 14:26:07 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	ft_parsing(char *file, t_pars *pars)
 		ft_error("Missing map", pars);
 	if (!pars->error)
 		ft_pars_map(file, pars);
-
+	if (pars->player != 1)
+		ft_error("There is no or multiple player in the map", pars);
 	
 	//DISPLAY
 	printf("RES X %d\n", pars->resx);
@@ -77,6 +78,7 @@ void	ft_parsing(char *file, t_pars *pars)
 	
 	printf("SIZELINE : %d\n", pars->sizeline);
 	printf("NBRLINE : %d\n", pars->nbrline);
+	printf("PLAYER : NBR : %d / X : %d / Y : %d / O : %c\n", pars->player, pars->px, pars->py, pars->po);
 }
 
 void	ft_check_file(char *file, t_pars *pars)
