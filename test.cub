@@ -1,16 +1,15 @@
-R 1920 1080 
+R 1920 1080
 NO ./testsrcs/north
 SO ./testsrcs/south
 WE ./testsrcs/west
 EA ./testsrcs/east
-
 S ./testsrcs/sprite
 
 F 0,0,254
 C 25,95,13 
 
+
 11111111
 1000E111
-100000000000
-001
-111111111111
+10000111
+11111111

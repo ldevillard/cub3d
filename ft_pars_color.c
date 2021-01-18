@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 10:51:58 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 10:15:46 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 13:32:38 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void			ft_pars_color(char *str, t_pars *pars)
 	i = 0;
 	if (str[i] == 'C')
 	{
+		if (pars->c_fill)
+			pars->error++;
 		ft_check_str(&str[1], pars);
 		if (!pars->error)
 			ft_fill(&str[1], pars->c_color, pars);
@@ -108,6 +110,8 @@ void			ft_pars_color(char *str, t_pars *pars)
 	}
 	else if (str[i] == 'F')
 	{
+		if (pars->f_fill)
+			pars->error++;
 		ft_check_str(&str[1], pars);
 		if (!pars->error)
 			ft_fill(&str[1], pars->f_color, pars);
