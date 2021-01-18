@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:46:50 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 13:19:52 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 14:06:52 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_fill_map(char *str, t_pars *pars)
 {
-	int j;
-	static int i = 0;
+	int			j;
+	static int	i = 0;
 
 	j = 0;
 	pars->map[i] = NULL;
@@ -24,8 +24,7 @@ void	ft_fill_map(char *str, t_pars *pars)
 	pars->m_line++;
 	while (str[j])
 	{
-		//Faire aussi la conversion 0 du perso apres check son orientation
-		if (str[j] == ' ')
+		if (str[j] == ' ' || str[j] == '\t')
 			pars->map[i][j] = '1';
 		else
 			pars->map[i][j] = str[j];
@@ -43,7 +42,7 @@ void	ft_pars_map(char *file, t_pars *pars)
 	char	*line;
 	int		fd;
 	int		gnl;
-	
+
 	gnl = 1;
 	fd = open(file, O_RDONLY);
 	if (!(pars->map = malloc(sizeof(char *) * pars->nbrline)))
@@ -94,11 +93,17 @@ void	ft_check_map(char *str, t_pars *pars)
 		if (!pars->resx || !pars->resy \
 			|| !pars->north || !pars->south || !pars->east \
 			|| !pars->west || !pars->sprite
-			|| pars->c_fill == false 
+			|| pars->c_fill == false
 			|| pars->f_fill == false)
 			pars->error++;
 		else if (pars->sizeline < (int)ft_strlen(str))
 			pars->sizeline = ft_strlen(str);
 		pars->nbrline++;
 	}
+	else if (pars->resx && pars->resy
+		&& pars->north && pars->south && pars->east
+		&& pars->west && pars->sprite
+		&& pars->c_fill == true
+		&& pars->f_fill == true && ft_void_line(str))
+		pars->error++;
 }

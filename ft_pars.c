@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 13:17:15 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 14:05:30 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	ft_load_pars(char *str, t_pars *pars)
 				pars->east != NULL || pars->sprite != NULL) && (pars->resx == 0
 				|| pars->resy == 0))
 		pars->error++;
+	ft_check_map(str, pars);
 	ft_pars_res(str, pars);
 	ft_pars_color(str, pars);
 	ft_pars_text(str, pars);
-	ft_check_map(str, pars);
 }
 
 void	ft_parsing(char *file, t_pars *pars)
