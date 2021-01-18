@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 15:43:38 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 13:13:09 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	ft_parsing(char *file, t_pars *pars)
 		ft_error("Invalid file", pars);
 		return ;
 	}
-	while ((gnl = get_next_line(fd, &line)) != 0)
+	while (gnl != 0)
 	{
+		gnl = get_next_line(fd, &line);
 		if (gnl == -1 || pars->error)
 		{
 			ft_error("Problem encountered while parsing", pars);
@@ -56,7 +57,6 @@ void	ft_parsing(char *file, t_pars *pars)
 		ft_load_pars(line, pars);
 		free(line);
 	}
-	free(line);
 	close(fd);
 	if (!pars->nbrline || !pars->sizeline)
 		ft_error("Missing map", pars);

@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 15:07:39 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 12:48:15 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct	s_pars
 	int		sizeline;
 	char	**map;
 	bool	is_map;
+	int		m_line;
+	int		map_finished;
 }				t_pars;
 
 void			ft_init_struct(t_pars *pars);

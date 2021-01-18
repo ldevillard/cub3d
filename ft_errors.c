@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:47:09 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 16:01:04 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 13:01:01 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ void	ft_error(char *str, t_pars *pars)
 	if (pars->sprite)
 		free(pars->sprite);
 	if (pars->map)
-		while (pars->map[i] && i <= pars->nbrline)
+		while (i < pars->m_line)
 			free(pars->map[i++]);
-	free(pars->map);
+	if (pars->map)
+		free(pars->map);
 	pars->error++;
 	exit (0);
 }
@@ -39,7 +40,7 @@ void	ft_error(char *str, t_pars *pars)
 void	ft_free(t_pars *pars)
 {
 	int i;
-
+	
 	i = 0;
 	if (pars->north)
 		free(pars->north);
@@ -52,7 +53,9 @@ void	ft_free(t_pars *pars)
 	if (pars->sprite)
 		free(pars->sprite);
 	if (pars->map)
-		while (pars->map[i] && i <= pars->nbrline)
+		while (i < pars->m_line)
 			free(pars->map[i++]);
+	if (pars->map)
+		free(pars->map);
 	free(pars->map);
 }

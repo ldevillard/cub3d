@@ -1,16 +1,16 @@
 R 1920 1080 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./testsrcs/north
+SO ./testsrcs/south
+WE ./testsrcs/west
+EA ./testsrcs/east
 
-S ./path_to_the_sprite_texture
+S ./testsrcs/sprite
 
-F 0,0,0  
-C 25,95,13
-
+F 0,0,254
+C 25,95,13 
 
 11111111
 1000E111
-100000000000001
+100000000000
+001
 111111111111

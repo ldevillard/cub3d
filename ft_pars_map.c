@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:46:50 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 16:00:07 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 13:11:09 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_fill_map(char *str, t_pars *pars)
 	pars->map[i] = NULL;
 	if (!(pars->map[i] = malloc(sizeof(char) * pars->sizeline + 1)))
 		ft_error("Malloc fail", pars);
+	pars->m_line++;
 	while (str[j])
 	{
 		//Faire aussi la conversion 0 du perso apres check son orientation
@@ -28,11 +29,6 @@ void	ft_fill_map(char *str, t_pars *pars)
 			pars->map[i][j] = '1';
 		else
 			pars->map[i][j] = str[j];
-		j++;
-	}
-	while (j <= (pars->sizeline - 1))
-	{
-		pars->map[i][j] = '1';
 		j++;
 	}
 	pars->map[i][j] = '\0';

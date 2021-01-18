@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 09:04:58 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/15 09:50:43 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 12:42:20 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	ft_set_text(char *str, char **text, t_pars *pars)
 {
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
 	if (str[i] != ' ' || ft_strlen(str) <= 2)
 		pars->error++;
 	while (str[i] != '.' && str[i] && !pars->error)
@@ -26,7 +28,13 @@ void	ft_set_text(char *str, char **text, t_pars *pars)
 		i++;
 	}
 	if (str[i] && str[i + 1] == '/')
-		*text = ft_strdup(&str[i]);
+	{
+		while (str[i + j] != ' ' && str[i + j])
+			j++;
+		*text = ft_substr(&str[i], 0, j);	
+	}
+	if (open(*text, O_RDONLY) == -1)
+		pars->error++;
 }
 
 void	ft_pars_text(char *str, t_pars *pars)
