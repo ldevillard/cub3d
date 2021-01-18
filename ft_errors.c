@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:47:09 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 13:01:01 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 13:17:29 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,4 @@ void	ft_free(t_pars *pars)
 			free(pars->map[i++]);
 	if (pars->map)
 		free(pars->map);
-	free(pars->map);
 }
