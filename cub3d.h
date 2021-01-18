@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 14:22:17 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 15:42:40 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ void			ft_pars_map(char *file, t_pars *pars);
 int				ft_void_line(char *str);
 void			ft_valid_map(char *str, t_pars *pars);
 void			ft_fill_map(char *str, t_pars *pars);
+int				ft_check_wall(t_pars *pars);
+void			ft_print_map(t_pars *pars);
 
 #endif

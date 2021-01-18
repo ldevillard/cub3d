@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 14:26:07 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 15:18:30 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	ft_parsing(char *file, t_pars *pars)
 	printf("SIZELINE : %d\n", pars->sizeline);
 	printf("NBRLINE : %d\n", pars->nbrline);
 	printf("PLAYER : NBR : %d / X : %d / Y : %d / O : %c\n", pars->player, pars->px, pars->py, pars->po);
+	ft_print_map(pars);
 }
 
 void	ft_check_file(char *file, t_pars *pars)
