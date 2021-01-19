@@ -1,5 +1,7 @@
 LIBFT = ./libft/libft.a
 
+MLX = libmlx.dylib
+
 NAME = cub3D
 
 SRCS = ft_errors.c \
@@ -13,9 +15,9 @@ SRCS = ft_errors.c \
 
 CC = gcc
 
-FLAGS = -c -Wall -Wextra -Werror
+FLAGS = -c -Wall -Wextra -Werror 
 
-INCLUDE = cub3d.h
+INCLUDE = cub3d.h minilibx/mlx.h
 
 OBJS = $(SRCS:.c=.o)
 
@@ -24,8 +26,10 @@ OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	$(MAKE) -C ./libft
+	$(MAKE) -C ./minilibx
 	cp libft/libft.a .
-	$(CC) -o $(NAME) $(SRCS) $(LIBFT)
+	cp minilibx/libmlx.dylib .
+	$(CC) -o $(NAME) $(SRCS) $(LIBFT) $(MLX)
 
 all : $(NAME)
 
@@ -35,6 +39,7 @@ clean :
 
 fclean : clean
 	$(MAKE) fclean -C ./libft
+	$(MAKE) clean -C ./minilibx
 	rm -rf *.o
 	rm -rf *.a
 	rm -rf cub3D

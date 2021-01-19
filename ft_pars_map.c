@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:46:50 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 16:20:11 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 12:54:14 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ void	ft_fill_map(char *str, t_pars *pars)
 			pars->po = str[j];
 			str[j] = '0';
 		}
-		/*if (str[j] == ' ' && i && i != pars->nbrline - 1 && ft_is_map(&str[j]))
-			pars->map[i][j] = ' ';
-		else if (str[j] == ' ' && (!i || i == pars->nbrline - 1))
-			pars->map[i][j] = ' ';
-		else*/
 		pars->map[i][j] = str[j];
 		j++;
 		if (!ft_is_map(&str[j]))

@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/19 12:20:45 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 15:47:48 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ void	ft_load_pars(char *str, t_pars *pars)
 	if (pars->sizeline > 0 && (pars->north == NULL || pars->south == NULL ||
 				pars->west == NULL || pars->east == NULL
 				|| pars->sprite == NULL))
-		pars->error++;
-	if ((pars->north != NULL || pars->south != NULL || pars->west != NULL ||
-				pars->east != NULL || pars->sprite != NULL) && (pars->resx == 0
-				|| pars->resy == 0))
 		pars->error++;
 	ft_check_map(str, pars);
 	ft_pars_res(str, pars);
@@ -66,7 +62,7 @@ void	ft_parsing(char *file, t_pars *pars)
 		ft_error("There is no or multiple player in the map", pars);
 	ft_strsdup(pars->map, pars);
 	if (ft_check_wall(pars, pars->px - 1, pars->py - 1) == 0)
-		ft_error("Map isn't close", pars);
+		ft_error("Map isn't closed", pars);
 	
 	//DISPLAY
 	printf("RES X %d\n", pars->resx);
