@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:47:09 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/19 12:13:50 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 12:17:58 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void	ft_error(char *str, t_pars *pars)
 			free(pars->map[i++]);
 	if (pars->map)
 		free(pars->map);
+	i = 0;
+	if (pars->savemap)
+		while (i < pars->m_save_line)
+			free(pars->savemap[i++]);
+	if (pars->savemap)
+		free(pars->savemap);
 	pars->error++;
 	exit(0);
 }
@@ -57,4 +63,10 @@ void	ft_free(t_pars *pars)
 			free(pars->map[i++]);
 	if (pars->map)
 		free(pars->map);
+	i = 0;
+	if (pars->savemap)
+		while (i < pars->m_save_line)
+			free(pars->savemap[i++]);
+	if (pars->savemap)
+		free(pars->savemap);
 }

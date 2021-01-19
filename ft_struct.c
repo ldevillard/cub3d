@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/19 10:54:24 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 12:16:54 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,6 @@ void	ft_init_struct(t_pars *pars)
 	pars->player = 0;
 	pars->px = 0;
 	pars->py = 0;
+	pars->m_save_line = 0;
+	pars->savemap = NULL;
 }

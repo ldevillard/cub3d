@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/19 11:03:23 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 12:20:45 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_parsing(char *file, t_pars *pars)
 		ft_pars_map(file, pars);
 	if (pars->player != 1)
 		ft_error("There is no or multiple player in the map", pars);
-	pars->savemap = ft_strsdup(pars->map, pars);
+	ft_strsdup(pars->map, pars);
 	if (ft_check_wall(pars, pars->px - 1, pars->py - 1) == 0)
 		ft_error("Map isn't close", pars);
 	
@@ -82,6 +82,7 @@ void	ft_parsing(char *file, t_pars *pars)
 	printf("SIZELINE : %d\n", pars->sizeline);
 	printf("NBRLINE : %d\n", pars->nbrline);
 	printf("PLAYER : NBR : %d / X : %d / Y : %d / O : %c\n", pars->player, pars->px, pars->py, pars->po);
+	ft_putchar('\n');
 	ft_print_map(pars);
 }
 

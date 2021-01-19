@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:24:08 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/19 12:11:27 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 12:21:59 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,36 +57,29 @@ void	ft_print_map(t_pars *pars)
 		i++;
 	}
 	i = 0;
-	ft_putstr("\n\n\n");
-	while (i < pars->nbrline)
-	{
-		ft_putendl_fd(pars->savemap[i], 1);
-		i++;
-	}
 }
 
-char	**ft_strsdup(char **sstr, t_pars *pars)
+void	ft_strsdup(char **sstr, t_pars *pars)
 {
-	char	**tab;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	if (!(tab = malloc(sizeof(char *) * pars->nbrline)))
+	if (!(pars->savemap = malloc(sizeof(char *) * pars->nbrline)))
 		ft_error("Malloc fail", pars);
 	while (i < pars->nbrline)
 	{
 		j = 0;
-		if (!(tab[i] = malloc(sizeof(char) * pars->sizeline + 1)))
+		if (!(pars->savemap[i] = malloc(sizeof(char) * pars->sizeline + 1)))
 			ft_error("Malloc fail", pars);
 		while (sstr[i][j])
 		{
-			tab[i][j] = sstr[i][j];
+			pars->savemap[i][j] = sstr[i][j];
 			j++;
 		}
-		tab[i][j] = '\0';
+		pars->savemap[i][j] = '\0';
 		i++;
+		pars->m_save_line++;
 	}
-	return (tab);
 }
