@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 15:42:40 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 10:59:50 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_pars
 	int		px;
 	int		py;
 	char	po;
+	char	**savemap;
 }				t_pars;
 
 void			ft_init_struct(t_pars *pars);
@@ -66,7 +67,8 @@ void			ft_pars_map(char *file, t_pars *pars);
 int				ft_void_line(char *str);
 void			ft_valid_map(char *str, t_pars *pars);
 void			ft_fill_map(char *str, t_pars *pars);
-int				ft_check_wall(t_pars *pars);
+int				ft_check_wall(t_pars *pars, int x, int y);
 void			ft_print_map(t_pars *pars);
+char			**ft_strsdup(char **sstr, t_pars *pars);
 
 #endif
