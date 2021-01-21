@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/19 12:16:54 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 10:42:37 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,34 @@ void	ft_init_struct(t_pars *pars)
 	pars->m_save_line = 0;
 	pars->savemap = NULL;
 }
+
+void	ft_init_raycast(t_pars *pars)
+{
+	pars->raycast.posx = pars->px;
+	pars->raycast.posy = pars->py;
+	pars->raycast.dirx = 0;
+	pars->raycast.diry = 0;
+	pars->raycast.planx = 0;
+	pars->raycast.plany = 0;
+	if (pars->po == 'N')
+	{
+		pars->raycast.dirx = -1;
+		pars->raycast.plany = 0.66;
+	}
+	else if (pars->po == 'S')
+	{
+		pars->raycast.dirx = 1;
+		pars->raycast.plany = -0.66;
+	}
+	else if (pars->po == 'W')
+	{
+		pars->raycast.diry = -1;
+		pars->raycast.planx = -0.66;
+	}
+	else if (pars->po == 'E')
+	{
+		pars->raycast.diry = 1;
+		pars->raycast.planx = 0.66;
+	}
+}
+		

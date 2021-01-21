@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:47:09 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/19 12:17:58 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 13:55:27 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	ft_error(char *str, t_pars *pars)
 {
 	int i;
-
+	(void)pars;
 	i = 0;
 	printf("Error\n%s\n", str);
-	if (pars->north)
+	/*if (pars->north)
 		free(pars->north);
 	if (pars->south)
 		free(pars->south);
@@ -39,7 +39,7 @@ void	ft_error(char *str, t_pars *pars)
 			free(pars->savemap[i++]);
 	if (pars->savemap)
 		free(pars->savemap);
-	pars->error++;
+	pars->error++;*/
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/19 15:47:48 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 10:52:10 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_parsing(char *file, t_pars *pars)
 	if (pars->player != 1)
 		ft_error("There is no or multiple player in the map", pars);
 	ft_strsdup(pars->map, pars);
-	if (ft_check_wall(pars, pars->px - 1, pars->py - 1) == 0)
+	if (ft_check_wall(pars, pars->px, pars->py) == 0)
 		ft_error("Map isn't closed", pars);
 	
 	//DISPLAY
@@ -80,6 +80,9 @@ void	ft_parsing(char *file, t_pars *pars)
 	printf("PLAYER : NBR : %d / X : %d / Y : %d / O : %c\n", pars->player, pars->px, pars->py, pars->po);
 	ft_putchar('\n');
 	ft_print_map(pars);
+
+	//RAYCAST
+	ft_raycasting(pars);
 }
 
 void	ft_check_file(char *file, t_pars *pars)
