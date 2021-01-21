@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/21 10:42:37 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 11:18:53 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,31 +48,31 @@ void	ft_init_struct(t_pars *pars)
 
 void	ft_init_raycast(t_pars *pars)
 {
-	pars->raycast.posx = pars->px;
-	pars->raycast.posy = pars->py;
-	pars->raycast.dirx = 0;
-	pars->raycast.diry = 0;
-	pars->raycast.planx = 0;
-	pars->raycast.plany = 0;
+	pars->ray.posx = pars->px;
+	pars->ray.posy = pars->py;
+	pars->ray.dirx = 0;
+	pars->ray.diry = 0;
+	pars->ray.planx = 0;
+	pars->ray.plany = 0;
 	if (pars->po == 'N')
 	{
-		pars->raycast.dirx = -1;
-		pars->raycast.plany = 0.66;
+		pars->ray.dirx = -1;
+		pars->ray.plany = 0.66;
 	}
 	else if (pars->po == 'S')
 	{
-		pars->raycast.dirx = 1;
-		pars->raycast.plany = -0.66;
+		pars->ray.dirx = 1;
+		pars->ray.plany = -0.66;
 	}
 	else if (pars->po == 'W')
 	{
-		pars->raycast.diry = -1;
-		pars->raycast.planx = -0.66;
+		pars->ray.diry = -1;
+		pars->ray.planx = -0.66;
 	}
 	else if (pars->po == 'E')
 	{
-		pars->raycast.diry = 1;
-		pars->raycast.planx = 0.66;
+		pars->ray.diry = 1;
+		pars->ray.planx = 0.66;
 	}
 }
 		

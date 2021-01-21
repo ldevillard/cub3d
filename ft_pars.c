@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/21 10:52:10 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 15:08:44 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	ft_parsing(char *file, t_pars *pars)
 	ft_print_map(pars);
 
 	//RAYCAST
-	ft_raycasting(pars);
+	ft_mlx(pars);
+	//ft_raycasting(pars);
 }
 
 void	ft_check_file(char *file, t_pars *pars)
