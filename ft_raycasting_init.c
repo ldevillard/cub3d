@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 12:46:51 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/21 12:50:33 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 11:50:44 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_raycast_start(t_pars *pars, int *x)
 	pars->ray.raydiry = pars->ray.diry + pars->ray.plany * pars->ray.camerax;
 	pars->ray.mapx = (int)pars->ray.posx;
 	pars->ray.mapy = (int)pars->ray.posy;
+	//printf("%c\n", pars->map[pars->ray.mapx][pars->ray.mapy]);
+	//printf("%c\n", pars->map[pars->py][pars->px]);
 }
 
 void	ft_raycast_set_ray(t_pars *pars)

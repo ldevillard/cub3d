@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:24:51 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/21 15:09:08 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 13:22:20 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,17 @@ void            my_mlx_pixel_put(t_pars *pars, int x, int y, int color)
 
 void			ft_draw_col(t_pars *pars, int *x)
 {
-	/*
 	int j;
-	int i;
-
-	j = -1;
-	pars->ray.drawend = pars->resy - pars->ray.drawstart;
-	i = pars->ray.drawend;
-	while (++j < pars->ray.drawstart)
-		pars->data.addr[j * pars->data.line_length / 4 +
-			*x] = createRGB(pars->c_color[0], pars->c_color[1], pars->c_color[2]);
-	//if (j <= recup->ray.drawend)
-	//	ft_draw_texture(recup, recup->ray.x, j);
-	j = i;
-	while (++j < pars->resy)
-		pars->data.addr[j * pars->data.line_length / 4 +
-			*x] = createRGB(pars->f_color[0], pars->f_color[1], pars->f_color[2]);
-	*/
+	int color;
+	
+	j = 0;
+	color = createRGB(255, 0, 255);
+	 if (pars->ray.side == 1)
+		color = color / 2;
+	while (j++ <= pars->ray.drawstart)
+		my_mlx_pixel_put(pars, *x, j, createRGB(pars->c_color[0], pars->c_color[1], pars->c_color[2]));
+	while (j++ <= pars->ray.drawend)
+		my_mlx_pixel_put(pars, *x, j, color);
+	while (j++ < pars->resy)
+		my_mlx_pixel_put(pars, *x, j, createRGB(pars->f_color[0], pars->f_color[1], pars->f_color[2]));
 }

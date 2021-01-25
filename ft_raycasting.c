@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:05:18 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/21 15:01:52 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 13:19:39 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	ft_detect_wall(t_pars *pars)
 			pars->ray.side = 1;
 		}
 		//Check if ray has hit a wall
-		if (pars->map[pars->ray.mapx][pars->ray.mapy] == '1')
+		
+		if (pars->map[pars->ray.mapy][pars->ray.mapx] == '1')
 			pars->ray.hit = 1;
 	}
 	ft_calculate_ray(pars);
@@ -95,6 +96,9 @@ int		ft_raycasting(t_pars *pars)
 		//printf("CAM %f\n", pars->ray.camerax);
 		//printf("%f\n", pars->ray.raydirx);
 		//printf("%f\n", pars->ray.raydiry);
+		//printf("START : %d\n", pars->ray.drawstart);
+		//printf("END : %d\n", pars->ray.drawend);
+		printf("%d\n", pars->ray.side);
 		x++;
 	}
 	mlx_put_image_to_window(pars->data.mlx_ptr, pars->data.mlx_win, pars->data.img, 0, 0);
