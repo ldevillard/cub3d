@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/21 14:59:18 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/25 12:15:50 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ typedef struct	s_ray
 	int		lineheight; //hauteur de la ligne a dessiner
 	int		drawstart; //position de debut ou il faut dessiner
 	int		drawend; //position de fin ou il faut dessiner
+	int		front;
+	int		back;
+    int		right;
+    int		left;
+    int		r_left;
+    int		r_right;
+	double	movespeed; //the constant value is in squares/second
+  	double	rotspeed;
 }				t_raycast;
 
 typedef struct	s_data
@@ -131,5 +139,7 @@ void			ft_calculate_ray(t_pars *pars);
 void			ft_draw_col(t_pars *pars, int *x);
 unsigned long	createRGB(int r, int g, int b);
 void			my_mlx_pixel_put(t_pars *pars, int x, int y, int color);
+int				ft_press(int keycode, t_pars *pars);
+int				ft_release(int keycode, t_pars *pars);
 
 #endif

@@ -41,8 +41,8 @@ g++ *.cpp -lSDL
 
 #define screenWidth 1000
 #define screenHeight 600
-#define mapWidth 24
-#define mapHeight 24
+#define mapWidth 100
+#define mapHeight 100
 # define RIGHT_ARROW 124
 # define LEFT_ARROW 123
 # define W 13
@@ -50,32 +50,22 @@ g++ *.cpp -lSDL
 # define S 1
 # define D 2
 
-int worldMap[mapWidth][mapHeight]=
+char worldMap[mapWidth][mapHeight]=
 {
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+"        1111111111111111111111111",
+"        1000000000110000000000001",
+"        1011000001110000000000001",
+"        1001000000000000000000001",
+"111111111011000001110000000000001",
+"100000000011000001110111111111111",
+"11110111111111011100000010001",
+"11110111111111011101010010001",
+"11000000110101011100000000001",
+"10000000000000001100000010001",
+"10000000000000001101010010001",
+"1100000111010101111101111000111",
+"11110111 1110101 101111010001",
+"11111111 1111111 111111111111"
 };
 
 unsigned long    createRGB(int r, int g, int b)
@@ -201,7 +191,7 @@ int ft_raycasting(t_data *pars)
           side = 1;
         }
         //Check if ray has hit a wall
-        if(worldMap[mapX][mapY] > 0) hit = 1;
+        if(worldMap[mapX][mapY] == '1') hit = 1;
       }
       //Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
       if(side == 0) perpWallDist = (mapX - pars->posX + (1 - stepX) / 2) / rayDirX;
@@ -254,25 +244,25 @@ int ft_raycasting(t_data *pars)
     //move forward if no wall in front of you
     if(pars->front)
     {
-      if(worldMap[(int)(pars->posX + pars->dirX * moveSpeed)][(int)(pars->posY)] == 0) pars->posX += pars->dirX * moveSpeed;
-      if(worldMap[(int)(pars->posX)][(int)(pars->posY + pars->dirY * moveSpeed)] == 0) pars->posY += pars->dirY * moveSpeed;
+      if(worldMap[(int)(pars->posX + pars->dirX * moveSpeed)][(int)(pars->posY)] == '0') pars->posX += pars->dirX * moveSpeed;
+      if(worldMap[(int)(pars->posX)][(int)(pars->posY + pars->dirY * moveSpeed)] == '0') pars->posY += pars->dirY * moveSpeed;
     }
     //move backwards if no wall behind you
     if(pars->back)
     {
-      if(worldMap[(int)(pars->posX - pars->dirX * moveSpeed)][(int)(pars->posY)] == 0) pars->posX -= pars->dirX * moveSpeed;
-      if(worldMap[(int)(pars->posX)][(int)(pars->posY - pars->dirY * moveSpeed)] == 0) pars->posY -= pars->dirY * moveSpeed;
+      if(worldMap[(int)(pars->posX - pars->dirX * moveSpeed)][(int)(pars->posY)] == '0') pars->posX -= pars->dirX * moveSpeed;
+      if(worldMap[(int)(pars->posX)][(int)(pars->posY - pars->dirY * moveSpeed)] == '0') pars->posY -= pars->dirY * moveSpeed;
     }
     if(pars->left)
     {
-      if(worldMap[(int)(pars->posX + pars->dirX * moveSpeed)][(int)(pars->posY)] == 0) pars->posX -= pars->dirY * moveSpeed;
-      if(worldMap[(int)(pars->posX)][(int)(pars->posY + pars->dirY * moveSpeed)] == 0) pars->posY += pars->dirX * moveSpeed;
+      if(worldMap[(int)(pars->posX + pars->dirX * moveSpeed)][(int)(pars->posY)] == '0') pars->posX -= pars->dirY * moveSpeed;
+      if(worldMap[(int)(pars->posX)][(int)(pars->posY + pars->dirY * moveSpeed)] == '0') pars->posY += pars->dirX * moveSpeed;
     }
     //move backwards if no wall behind you
     if(pars->right)
     {
-      if(worldMap[(int)(pars->posX - pars->dirX * moveSpeed)][(int)(pars->posY)] == 0) pars->posX += pars->dirY * moveSpeed;
-      if(worldMap[(int)(pars->posX)][(int)(pars->posY - pars->dirY * moveSpeed)] == 0) pars->posY -= pars->dirX * moveSpeed;
+      if(worldMap[(int)(pars->posX - pars->dirX * moveSpeed)][(int)(pars->posY)] == '0') pars->posX += pars->dirY * moveSpeed;
+      if(worldMap[(int)(pars->posX)][(int)(pars->posY - pars->dirY * moveSpeed)] == '0') pars->posY -= pars->dirX * moveSpeed;
     }
     //rotate to the right
     if(pars->r_right)
@@ -311,8 +301,8 @@ int main()
   pars.left = 0;
   pars.r_left = 0;
   pars.r_right = 0;
-  pars.posX = 22;
-  pars.posY = 12;
+  pars.posX = 6;
+  pars.posY = 5;
   pars.dirX = -1;
   pars.dirY = 0;
   pars.planeX = 0;

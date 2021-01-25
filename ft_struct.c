@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/22 12:06:24 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/25 13:38:34 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,20 @@ void	ft_init_struct(t_pars *pars)
 
 void	ft_init_raycast(t_pars *pars)
 {
-	//pars->ray.posx = (double)pars->px + 0.5;
-	//pars->ray.posy = (double)pars->py + 0.5;
+	pars->ray.movespeed = 0.05;
+  	pars->ray.rotspeed = 0.033 * 1.8;
 	pars->ray.posx = pars->px;
 	pars->ray.posy = pars->py;
 	pars->ray.dirx = 0;
 	pars->ray.diry = 0;
 	pars->ray.planx = 0;
 	pars->ray.plany = 0;
+	pars->ray.front = 0;
+	pars->ray.back = 0;
+	pars->ray.left = 0;
+	pars->ray.right = 0;
+	pars->ray.r_left = 0;
+	pars->ray.r_right = 0;
 	if (pars->po == 'N')
 	{
 		pars->ray.dirx = -1;

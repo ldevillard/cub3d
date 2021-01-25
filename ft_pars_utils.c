@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:24:08 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/22 11:48:02 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/25 13:02:36 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	ft_print_map(t_pars *pars)
 		ft_putendl_fd(pars->map[i], 1);
 		i++;
 	}
-	//i = 0;
-	//ft_putchar('\n');
-	//while (i < pars->nbrline)
-	//{
-	//	ft_putendl_fd(pars->savemap[i], 1);
-	//	i++;
-	//}
+	i = 0;
+	ft_putchar('\n');
+	while (i < pars->nbrline)
+	{
+		ft_putendl_fd(pars->savemap[i], 1);
+		i++;
+	}
 }
 
 void	ft_strsdup(char **sstr, t_pars *pars)
