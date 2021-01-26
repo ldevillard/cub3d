@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 11:08:14 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 13:29:47 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
-	char	**map;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -50,7 +49,22 @@ typedef struct	s_data {
 	double	diry;
 	double	planex;
 	double	planey;
-
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	int		mapx;
+	int		mapy;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	double	perpwalldist;
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
+	double	movespeed;
+	double	rotspeed;
 }				t_data;
 
 typedef struct	s_pars
@@ -107,8 +121,8 @@ int				ft_raycasting(t_pars *values);
 void			ft_mlx(t_pars *values);
 int				ft_key_hook(int keycode, t_pars *pars);
 int				ft_exit(t_pars *pars);
-void			ft_raycast_start(t_pars *pars, int *x);
-void			ft_raycast_set_ray(t_pars *pars);
+void			ft_raycast_start(t_pars *values);
+void			ft_raycast_set(t_pars *values, int *x);
 void			ft_raycast_set_side(t_pars *pars);
 void			ft_detect_wall(t_pars *pars);
 void			ft_calculate_ray(t_pars *pars);
@@ -118,5 +132,9 @@ void			my_mlx_pixel_put(t_pars *values, int x, int y, int color);
 int				ft_press(int keycode, t_data *data);
 int				ft_release(int keycode, t_data *data);
 void			ft_init_player(t_pars *values);
+void			ft_move_fb(t_pars *values);
+void			ft_move_rl(t_pars *values);
+void			ft_rot_right(t_pars *values);
+void			ft_rot_left(t_pars *values);
 
 #endif

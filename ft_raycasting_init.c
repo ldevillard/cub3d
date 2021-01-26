@@ -6,48 +6,44 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 12:46:51 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 10:29:12 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 13:23:51 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_raycast_start(t_pars *pars, int *x)
+void	ft_raycast_start(t_pars *values)
 {
-	(void)x;
-	(void)pars;
-	/*
-	pars->ray.hit = 0;
-	pars->ray.perpwalldist = 0;
-	pars->ray.camerax = 2 * *x / (double)pars->resx - 1;
-	pars->ray.raydirx = pars->ray.dirx + pars->ray.planx * pars->ray.camerax;
-	pars->ray.raydiry = pars->ray.diry + pars->ray.plany * pars->ray.camerax;
-	pars->ray.mapx = (int)pars->ray.posx;
-	pars->ray.mapy = (int)pars->ray.posy;
-	//printf("%c\n", pars->map[pars->ray.mapx][pars->ray.mapy]);
-	//printf("%c\n", pars->map[pars->py][pars->px]);
-	*/
+	values->data.movespeed = 0.05;
+	values->data.rotspeed = 0.033 * 1.8;
+	values->data.front = 0;
+	values->data.back = 0;
+	values->data.right = 0;
+	values->data.left = 0;
+	values->data.r_left = 0;
+	values->data.r_right = 0;
+	values->data.posx = (double)values->py + 0.5;
+	values->data.posy = (double)values->px + 0.5;
+	values->data.dirx = 0;
+	values->data.diry = 0;
+	values->data.planex = 0;
+	values->data.planey = 0;
+	values->resx = (values->resx > 2560) ? 2560 : values->resx;
+	values->resy = (values->resy > 1440) ? 1440 : values->resy;
 }
 
-void	ft_raycast_set_ray(t_pars *pars)
-{
-	(void)pars;
-	/*
-	if (pars->ray.raydiry == 0)
-		pars->ray.deltadistx = 0;
-	else if (pars->ray.raydirx == 0)
-		pars->ray.deltadistx = 1;
-	else
-		pars->ray.deltadistx = sqrt(1 + (pars->ray.raydiry
-			* pars->ray.raydiry) / (pars->ray.raydirx *
-			pars->ray.raydirx));
-	if (pars->ray.raydirx == 0)
-		pars->ray.deltadisty = 0;
-	else if (pars->ray.raydiry == 0)
-		pars->ray.deltadisty = 1;
-	else
-		pars->ray.deltadisty = sqrt(1 + (pars->ray.raydirx *
-			pars->ray.raydirx) / (pars->ray.raydiry *
-			pars->ray.raydiry));
-	*/
+void	ft_raycast_set(t_pars *values, int *x)
+{		
+	//calculate ray position and direction
+	values->data.camerax = 2 * *x / (double)values->resx - 1; //x-coordinate in camera space
+	values->data.raydirx = values->data.dirx + values->data.planex * values->data.camerax;
+	values->data.raydiry = values->data.diry + values->data.planey * values->data.camerax;
+	//which box of the map we're in
+	values->data.mapx = (int)values->data.posx;
+	values->data.mapy = (int)values->data.posy;
+	//length of ray from one x or y-side to next x or y-side
+	values->data.deltadistx = fabs(1 / values->data.raydirx);
+	values->data.deltadisty = fabs(1 / values->data.raydiry);
+	values->data.hit = 0;
+	//calculate step and initial sideDist
 }
