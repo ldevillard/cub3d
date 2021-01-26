@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/22 12:15:43 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 09:33:00 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_parsing(char *file, t_pars *pars)
 	printf("NBRLINE : %d\n", pars->nbrline);
 	printf("PLAYER : NBR : %d / X : %d / Y : %d / O : %c\n", pars->player, pars->px, pars->py, pars->po);
 	ft_putchar('\n');
-	ft_print_map(pars);
+	//ft_print_map(pars);
 
 	//RAYCAST
 	ft_mlx(pars);

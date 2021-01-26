@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/25 12:15:50 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 09:47:55 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,29 @@ typedef struct	s_ray
   	double	rotspeed;
 }				t_raycast;
 
-typedef struct	s_data
-{
-	void	*mlx_ptr;
-	void	*mlx_win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+typedef struct  s_data {
+    void        *img;
+    char        *addr;
+	char		**map;
+    int         bits_per_pixel;
+    int         line_length;
+    int         endian;
+    void        *mlx;
+    void        *mlx_win;
+    int         front;
+    int         back;
+    int         right;
+    int         left;
+    int         r_left;
+    int         r_right;
+    double         posX;
+    double         posY;
+    double dirX; 
+    double dirY; //initial direction vector
+    double planeX; 
+    double planeY;
+
+}               t_data;
 
 typedef struct	s_pars
 {
@@ -127,8 +140,8 @@ int				ft_check_wall(t_pars *pars, int x, int y);
 void			ft_print_map(t_pars *pars);
 void			ft_strsdup(char **sstr, t_pars *pars);
 void			ft_init_raycast(t_pars *pars);
-int				ft_raycasting(t_pars *pars);
-void			ft_mlx(t_pars *pars);
+int				ft_raycasting(t_data *pars, t_pars *values);
+void			ft_mlx(t_pars *values);
 int				ft_key_hook(int keycode, t_pars *pars);
 int				ft_exit(t_pars *pars);
 void			ft_raycast_start(t_pars *pars, int *x);
@@ -138,8 +151,8 @@ void			ft_detect_wall(t_pars *pars);
 void			ft_calculate_ray(t_pars *pars);
 void			ft_draw_col(t_pars *pars, int *x);
 unsigned long	createRGB(int r, int g, int b);
-void			my_mlx_pixel_put(t_pars *pars, int x, int y, int color);
-int				ft_press(int keycode, t_pars *pars);
-int				ft_release(int keycode, t_pars *pars);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int				ft_press(int keycode, t_data *data);
+int				ft_release(int keycode, t_data *data);
 
 #endif
