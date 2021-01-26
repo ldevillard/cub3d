@@ -6,13 +6,25 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:46:50 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/21 10:32:27 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 10:57:13 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_fill_map(char *str, t_pars *pars)
+static	void	ft_check_fill(int i, int j, char *s, t_pars *pars)
+{
+	if (ft_ccheck("NSEW", s[j]))
+	{
+		pars->player++;
+		pars->px = j;
+		pars->py = i;
+		pars->po = s[j];
+		s[j] = '0';
+	}
+}
+
+void			ft_fill_map(char *str, t_pars *pars)
 {
 	int			j;
 	static int	i = 0;
@@ -29,14 +41,7 @@ void	ft_fill_map(char *str, t_pars *pars)
 	}
 	while (str[j])
 	{
-		if (ft_ccheck("NSEW", str[j]))
-		{
-			pars->player++;
-			pars->px = j;
-			pars->py = i;
-			pars->po = str[j];
-			str[j] = '0';
-		}
+		ft_check_fill(i, j, str, pars);
 		pars->map[i][j] = str[j];
 		j++;
 		if (!ft_is_map(&str[j]))
@@ -48,7 +53,7 @@ void	ft_fill_map(char *str, t_pars *pars)
 	i++;
 }
 
-void	ft_pars_map(char *file, t_pars *pars)
+void			ft_pars_map(char *file, t_pars *pars)
 {
 	char	*line;
 	int		fd;
@@ -74,7 +79,7 @@ void	ft_pars_map(char *file, t_pars *pars)
 	close(fd);
 }
 
-int		ft_is_map(char *str)
+int				ft_is_map(char *str)
 {
 	int	i;
 
@@ -97,7 +102,7 @@ int		ft_is_map(char *str)
 	return (0);
 }
 
-void	ft_check_map(char *str, t_pars *pars)
+void			ft_check_map(char *str, t_pars *pars)
 {
 	if (ft_is_map(str))
 	{

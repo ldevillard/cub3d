@@ -6,13 +6,19 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 09:04:58 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/18 14:37:53 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 11:02:55 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_set_text(char *str, char **text, t_pars *pars)
+static	void	ft_check_path(char *str, t_pars *pars)
+{
+	if (open(str, O_RDONLY) == -1)
+		pars->error++;
+}
+
+void			ft_set_text(char *str, char **text, t_pars *pars)
 {
 	int i;
 	int j;
@@ -33,16 +39,15 @@ void	ft_set_text(char *str, char **text, t_pars *pars)
 	{
 		while (str[i + j] != ' ' && str[i + j])
 			j++;
-		*text = ft_substr(&str[i], 0, j);	
+		*text = ft_substr(&str[i], 0, j);
 	}
 	while (str[i + j])
 		if (str[i + j++] != ' ')
 			pars->error++;
-	if (open(*text, O_RDONLY) == -1)
-		pars->error++;
+	ft_check_path(*text, pars);
 }
 
-void	ft_pars_text(char *str, t_pars *pars)
+void			ft_pars_text(char *str, t_pars *pars)
 {
 	int i;
 

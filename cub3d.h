@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 10:28:21 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 11:08:14 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,29 @@
 # define S 1
 # define D 2
 
-typedef struct  s_data {
-    void        *img;
-    char        *addr;
-	char		**map;
-    int         bits_per_pixel;
-    int         line_length;
-    int         endian;
-    void        *mlx;
-    void        *mlx_win;
-    int         front;
-    int         back;
-    int         right;
-    int         left;
-    int         r_left;
-    int         r_right;
-    double         posx;
-    double         posy;
-    double dirx; 
-    double diry;
-    double planex; 
-    double planey;
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	char	**map;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	void	*mlx;
+	void	*mlx_win;
+	int		front;
+	int		back;
+	int		right;
+	int		left;
+	int		r_left;
+	int		r_right;
+	double	posx;
+	double	posy;
+	double	dirx;
+	double	diry;
+	double	planex;
+	double	planey;
 
-}               t_data;
+}				t_data;
 
 typedef struct	s_pars
 {
@@ -113,7 +113,7 @@ void			ft_raycast_set_side(t_pars *pars);
 void			ft_detect_wall(t_pars *pars);
 void			ft_calculate_ray(t_pars *pars);
 void			ft_draw_col(t_pars *pars, int *x);
-unsigned long	createRGB(int r, int g, int b);
+unsigned long	creatergb(int r, int g, int b);
 void			my_mlx_pixel_put(t_pars *values, int x, int y, int color);
 int				ft_press(int keycode, t_data *data);
 int				ft_release(int keycode, t_data *data);
