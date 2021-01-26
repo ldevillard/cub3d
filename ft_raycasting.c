@@ -1,46 +1,27 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_raycasting.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 10:15:13 by ldevilla          #+#    #+#             */
+/*   Updated: 2021/01/26 10:27:45 by ldevilla         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define screenWidth 1280
-#define screenHeight 720
-#define mapWidth 100
-#define mapHeight 100
-# define RIGHT_ARROW 124
-# define LEFT_ARROW 123
-# define W 13
-# define A 0
-# define S 1
-# define D 2
-
-char worldMap[mapWidth][mapHeight]=
-{
-"        1111111111111111111111111",
-"        1000000000110000000000001",
-"        1011000001110000000000001",
-"        1001000000000000000000001",
-"111111111011000001110000000000001",
-"100000000011000001110111111111111",
-"11110111111111011100000010001",
-"11110111111111011101010010001",
-"11000000110101011100000000001",
-"10000000000000001100000010001",
-"10000000000000001101010010001",
-"1100000111010101111101111000111",
-"11110111 1110101 101111010001",
-"11111111 1111111 111111111111"
-};
 
 unsigned long    createRGB(int r, int g, int b)
 {
     return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
-void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void            my_mlx_pixel_put(t_pars *values, int x, int y, int color)
 {
     char    *dst;
 
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    dst = values->data.addr + (y * values->data.line_length + x * (values->data.bits_per_pixel / 8));
     *(unsigned int*)dst = color;
     //printf("%s\n", dst);
     //data->addr[y * data->line_length + x * (data->bits_per_pixel / 8)] = color;
@@ -87,23 +68,22 @@ int		ft_release(int keycode, t_data *data)
 	return (1);
 }
 
-int ft_raycasting(t_data *pars, t_pars *values)
+int ft_raycasting(t_pars *values)
 {  //x and y start position
 
  //double time = 0; //time of current frame
   //double oldTime = 0; //time of previous frame
   double moveSpeed = 0.05; //the constant value is in squares/second
   double rotSpeed = 0.033 * 1.8; //the constant value is in radians/second
-  (void)values;
-    for(int x = 0; x < screenWidth; x++)
+    for(int x = 0; x < values->resx; x++)
     {
       //calculate ray position and direction
-      double cameraX = 2 * x / (double)screenWidth - 1; //x-coordinate in camera space
-      double rayDirX = pars->dirX + pars->planeX * cameraX;
-      double rayDirY = pars->dirY + pars->planeY * cameraX;
+      double cameraX = 2 * x / (double)values->resx - 1; //x-coordinate in camera space
+      double rayDirX = values->data.dirx + values->data.planex * cameraX;
+      double rayDirY = values->data.diry + values->data.planey * cameraX;
       //which box of the map we're in
-      int mapX = (int)pars->posX;
-      int mapY = (int)pars->posY;
+      int mapX = (int)values->data.posx;
+      int mapY = (int)values->data.posy;
 
       //length of ray from current position to next x or y-side
       double sideDistX;
@@ -124,22 +104,22 @@ int ft_raycasting(t_data *pars, t_pars *values)
       if(rayDirX < 0)
       {
         stepX = -1;
-        sideDistX = (pars->posX - mapX) * deltaDistX;
+        sideDistX = (values->data.posx - mapX) * deltaDistX;
       }
       else
       {
         stepX = 1;
-        sideDistX = (mapX + 1.0 - pars->posX) * deltaDistX;
+        sideDistX = (mapX + 1.0 - values->data.posx) * deltaDistX;
       }
       if(rayDirY < 0)
       {
         stepY = -1;
-        sideDistY = (pars->posY - mapY) * deltaDistY;
+        sideDistY = (values->data.posy - mapY) * deltaDistY;
       }
       else
       {
         stepY = 1;
-        sideDistY = (mapY + 1.0 - pars->posY) * deltaDistY;
+        sideDistY = (mapY + 1.0 - values->data.posy) * deltaDistY;
       }
       //perform DDA
       while (hit == 0)
@@ -158,20 +138,20 @@ int ft_raycasting(t_data *pars, t_pars *values)
           side = 1;
         }
         //Check if ray has hit a wall
-        if(worldMap[mapX][mapY] == '1') hit = 1;
+        if(values->map[mapX][mapY] == '1') hit = 1;
       }
       //Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
-      if(side == 0) perpWallDist = (mapX - pars->posX + (1 - stepX) / 2) / rayDirX;
-      else          perpWallDist = (mapY - pars->posY + (1 - stepY) / 2) / rayDirY;
+      if(side == 0) perpWallDist = (mapX - values->data.posx + (1 - stepX) / 2) / rayDirX;
+      else          perpWallDist = (mapY - values->data.posy + (1 - stepY) / 2) / rayDirY;
 
       //Calculate height of line to draw on screen
-      int lineHeight = (int)(screenHeight / perpWallDist);
+      int lineHeight = (int)(values->resy / perpWallDist);
 
       //calculate lowest and highest pixel to fill in current stripe
-      int drawStart = -lineHeight / 2 + screenHeight / 2;
+      int drawStart = -lineHeight / 2 + values->resy / 2;
       if(drawStart < 0)drawStart = 0;
-      int drawEnd = lineHeight / 2 + screenHeight / 2;
-      if(drawEnd >= screenHeight)drawEnd = screenHeight - 1;
+      int drawEnd = lineHeight / 2 + values->resy / 2;
+      if(drawEnd >= values->resy)drawEnd = values->resy - 1;
 
       //choose wall color
       int color = createRGB(200, 200, 0);
@@ -189,11 +169,11 @@ int ft_raycasting(t_data *pars, t_pars *values)
 	 	if (side == 1)
 			color = color / 2;
 		while (j++ <= drawStart)
-			my_mlx_pixel_put(pars, x, j, createRGB(0,200,200));
+			my_mlx_pixel_put(values, x, j, createRGB(0,200,200));
 		while (j++ <= drawEnd)
-			my_mlx_pixel_put(pars, x, j, color);
-		while (j++ < screenHeight)
-			my_mlx_pixel_put(pars, x, j, createRGB(100,100,100));
+			my_mlx_pixel_put(values, x, j, color);
+		while (j++ < values->resy)
+			my_mlx_pixel_put(values, x, j, createRGB(100,100,100));
 
 
     }
@@ -209,55 +189,78 @@ int ft_raycasting(t_data *pars, t_pars *values)
     
     
     //move forward if no wall in front of you
-    if(pars->front) 
+    if(values->data.front) 
     {
-      if(worldMap[(int)(pars->posX + pars->dirX * moveSpeed)][(int)(pars->posY)] == '0') pars->posX += pars->dirX * moveSpeed;
-      if(worldMap[(int)(pars->posX)][(int)(pars->posY + pars->dirY * moveSpeed)] == '0') pars->posY += pars->dirY * moveSpeed;
+      if(values->map[(int)(values->data.posx + values->data.dirx * moveSpeed)][(int)(values->data.posy)] == '0') values->data.posx += values->data.dirx * moveSpeed;
+      if(values->map[(int)(values->data.posx)][(int)(values->data.posy + values->data.diry * moveSpeed)] == '0') values->data.posy += values->data.diry * moveSpeed;
     }
     //move backwards if no wall behind you
-    if(pars->back)
+    if(values->data.back)
     {
-      if(worldMap[(int)(pars->posX - pars->dirX * moveSpeed)][(int)(pars->posY)] == '0') pars->posX -= pars->dirX * moveSpeed;
-      if(worldMap[(int)(pars->posX)][(int)(pars->posY - pars->dirY * moveSpeed)] == '0') pars->posY -= pars->dirY * moveSpeed;
+      if(values->map[(int)(values->data.posx - values->data.dirx * moveSpeed)][(int)(values->data.posy)] == '0') values->data.posx -= values->data.dirx * moveSpeed;
+      if(values->map[(int)(values->data.posx)][(int)(values->data.posy - values->data.diry * moveSpeed)] == '0') values->data.posy -= values->data.diry * moveSpeed;
     }
-    if(pars->left)
+    if(values->data.left)
     {
-      if(worldMap[(int)(pars->posX + pars->dirX * moveSpeed)][(int)(pars->posY)] == '0') pars->posX -= pars->dirY * moveSpeed;
-      if(worldMap[(int)(pars->posX)][(int)(pars->posY + pars->dirY * moveSpeed)] == '0') pars->posY += pars->dirX * moveSpeed;
+      if(values->map[(int)(values->data.posx + values->data.dirx * moveSpeed)][(int)(values->data.posy)] == '0') values->data.posx -= values->data.diry * moveSpeed;
+      if(values->map[(int)(values->data.posx)][(int)(values->data.posy + values->data.diry * moveSpeed)] == '0') values->data.posy += values->data.dirx * moveSpeed;
     }
     //move backwards if no wall behind you
-    if(pars->right)
+    if(values->data.right)
     {
-      if(worldMap[(int)(pars->posX - pars->dirX * moveSpeed)][(int)(pars->posY)] == '0') pars->posX += pars->dirY * moveSpeed;
-      if(worldMap[(int)(pars->posX)][(int)(pars->posY - pars->dirY * moveSpeed)] == '0') pars->posY -= pars->dirX * moveSpeed;
+      if(values->map[(int)(values->data.posx - values->data.dirx * moveSpeed)][(int)(values->data.posy)] == '0') values->data.posx += values->data.diry * moveSpeed;
+      if(values->map[(int)(values->data.posx)][(int)(values->data.posy - values->data.diry * moveSpeed)] == '0') values->data.posy -= values->data.dirx * moveSpeed;
     }
     //rotate to the right
-    if(pars->r_right)
+    if(values->data.r_right)
     {
       //both camera direction and camera plane must be rotated
-      double oldDirX = pars->dirX;
-      pars->dirX = pars->dirX * cos(-rotSpeed) - pars->dirY * sin(-rotSpeed);
-      pars->dirY = oldDirX * sin(-rotSpeed) + pars->dirY * cos(-rotSpeed);
-      double oldPlaneX = pars->planeX;
-      pars->planeX = pars->planeX * cos(-rotSpeed) - pars->planeY * sin(-rotSpeed);
-      pars->planeY = oldPlaneX * sin(-rotSpeed) + pars->planeY * cos(-rotSpeed);
+      double oldDirX = values->data.dirx;
+      values->data.dirx = values->data.dirx * cos(-rotSpeed) - values->data.diry * sin(-rotSpeed);
+      values->data.diry = oldDirX * sin(-rotSpeed) + values->data.diry * cos(-rotSpeed);
+      double oldPlaneX = values->data.planex;
+      values->data.planex = values->data.planex * cos(-rotSpeed) - values->data.planey * sin(-rotSpeed);
+      values->data.planey = oldPlaneX * sin(-rotSpeed) + values->data.planey * cos(-rotSpeed);
     }
     //rotate to the left
-    if(pars->r_left)
+    if(values->data.r_left)
     {
       //both camera direction and camera plane must be rotated
-      double oldDirX = pars->dirX;
-      pars->dirX = pars->dirX * cos(rotSpeed) - pars->dirY * sin(rotSpeed);
-      pars->dirY = oldDirX * sin(rotSpeed) + pars->dirY * cos(rotSpeed);
-      double oldPlaneX = pars->planeX;
-      pars->planeX = pars->planeX * cos(rotSpeed) - pars->planeY * sin(rotSpeed);
-      pars->planeY = oldPlaneX * sin(rotSpeed) + pars->planeY * cos(rotSpeed);
+      double oldDirX = values->data.dirx;
+      values->data.dirx = values->data.dirx * cos(rotSpeed) - values->data.diry * sin(rotSpeed);
+      values->data.diry = oldDirX * sin(rotSpeed) + values->data.diry * cos(rotSpeed);
+      double oldPlaneX = values->data.planex;
+      values->data.planex = values->data.planex * cos(rotSpeed) - values->data.planey * sin(rotSpeed);
+      values->data.planey = oldPlaneX * sin(rotSpeed) + values->data.planey * cos(rotSpeed);
     }
-    mlx_put_image_to_window(pars->mlx, pars->mlx_win, pars->img, 0, 0);
+    mlx_put_image_to_window(values->data.mlx, values->data.mlx_win, values->data.img, 0, 0);
+    
 	return (0);
 }
 
-
+void	ft_init_player(t_pars *values)
+{
+	if (values->po == 'N')
+	{
+		values->data.dirx = -1;
+		values->data.planey = 0.66;
+	}
+	else if (values->po == 'S')
+	{
+		values->data.dirx = 1;
+		values->data.planey = -0.66;
+	}
+	else if (values->po == 'W')
+	{
+		values->data.diry = -1;
+		values->data.planex = -0.66;
+	}
+	else if (values->po == 'E')
+	{
+		values->data.diry = 1;
+		values->data.planex = 0.66;
+	}
+}
 
 void    ft_mlx(t_pars *values)
 {
@@ -267,19 +270,24 @@ void    ft_mlx(t_pars *values)
   values->data.left = 0;
   values->data.r_left = 0;
   values->data.r_right = 0;
-  values->data.posX = 6;
-  values->data.posY = 5;
-  values->data.dirX = -1;
-  values->data.dirY = 0;
-  values->data.planeX = 0;
-  values->data.planeY = 0.66;
+  values->data.posx = (double)values->py + 0.5;
+  values->data.posy = (double)values->px + 0.5;
+  values->data.dirx = 0;
+  values->data.diry = 0;
+  values->data.planex = 0;
+  values->data.planey = 0;
+  values->resx = (values->resx > 5120) ? 5120 : values->resx;
+  values->resy = (values->resy > 2880) ? 2880 : values->resy; 
+  ft_init_player(values);
+  //values->data.planex = 0;
+  //values->data.planey = 0.66;
 	values->data.mlx = mlx_init();
-  values->data.mlx_win = mlx_new_window(values->data.mlx, screenWidth, screenHeight, "cub3d");
-	values->data.img = mlx_new_image(values->data.mlx, screenWidth, screenHeight);
+  values->data.mlx_win = mlx_new_window(values->data.mlx, values->resx, values->resy, "cub3d");
+	values->data.img = mlx_new_image(values->data.mlx, values->resx, values->resy);
 	values->data.addr = mlx_get_data_addr(values->data.img, &values->data.bits_per_pixel, &values->data.line_length, &values->data.endian);
   mlx_hook(values->data.mlx_win, 17, 1L << 0, ft_exit, values);
 	mlx_hook(values->data.mlx_win, 2, 1L << 0, ft_press, &values->data);
-	mlx_loop_hook(values->data.mlx, ft_raycasting, &values->data);
+	mlx_loop_hook(values->data.mlx, ft_raycasting, values);
   mlx_hook(values->data.mlx_win, 3, 1L << 1, ft_release, &values->data);
 	mlx_loop(values->data.mlx);
 

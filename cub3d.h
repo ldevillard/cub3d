@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 09:47:55 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 10:28:21 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,6 @@
 # define S 1
 # define D 2
 
-typedef struct	s_ray
-{
-	double	posx;
-	double	posy;
-	double	dirx;
-	double	diry;
-	double	planx;
-	double	plany;
-	double	raydirx;
-	double	raydiry;
-	double	camerax;
-	int		mapx; // coordonée x du carré dans lequel est pos
-	int		mapy; // coordonnée y du carré dans lequel est pos
-	double	sidedistx; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
-	double	sidedisty; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
-	double	deltadistx; //distance que rayon parcours entre chaque point d'intersection vertical
-	double	deltadisty; //distance que le rayon parcours entre chaque point d'intersection horizontal
-	int		stepx; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
-	int		stepy; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
-	int		hit; // 1 si un mur a ete touche, 0 sinon
-	int		side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
-	double	perpwalldist;
-	int		lineheight; //hauteur de la ligne a dessiner
-	int		drawstart; //position de debut ou il faut dessiner
-	int		drawend; //position de fin ou il faut dessiner
-	int		front;
-	int		back;
-    int		right;
-    int		left;
-    int		r_left;
-    int		r_right;
-	double	movespeed; //the constant value is in squares/second
-  	double	rotspeed;
-}				t_raycast;
-
 typedef struct  s_data {
     void        *img;
     char        *addr;
@@ -79,12 +44,12 @@ typedef struct  s_data {
     int         left;
     int         r_left;
     int         r_right;
-    double         posX;
-    double         posY;
-    double dirX; 
-    double dirY; //initial direction vector
-    double planeX; 
-    double planeY;
+    double         posx;
+    double         posy;
+    double dirx; 
+    double diry;
+    double planex; 
+    double planey;
 
 }               t_data;
 
@@ -115,7 +80,6 @@ typedef struct	s_pars
 	char		**savemap;
 	int			m_save_line;
 	t_data		data;
-	t_raycast	ray;
 }				t_pars;
 
 void			ft_init_struct(t_pars *pars);
@@ -139,8 +103,7 @@ void			ft_fill_map(char *str, t_pars *pars);
 int				ft_check_wall(t_pars *pars, int x, int y);
 void			ft_print_map(t_pars *pars);
 void			ft_strsdup(char **sstr, t_pars *pars);
-void			ft_init_raycast(t_pars *pars);
-int				ft_raycasting(t_data *pars, t_pars *values);
+int				ft_raycasting(t_pars *values);
 void			ft_mlx(t_pars *values);
 int				ft_key_hook(int keycode, t_pars *pars);
 int				ft_exit(t_pars *pars);
@@ -151,8 +114,9 @@ void			ft_detect_wall(t_pars *pars);
 void			ft_calculate_ray(t_pars *pars);
 void			ft_draw_col(t_pars *pars, int *x);
 unsigned long	createRGB(int r, int g, int b);
-void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void			my_mlx_pixel_put(t_pars *values, int x, int y, int color);
 int				ft_press(int keycode, t_data *data);
 int				ft_release(int keycode, t_data *data);
+void			ft_init_player(t_pars *values);
 
 #endif

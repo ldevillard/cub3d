@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 12:46:51 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/25 13:32:13 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 10:29:12 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_raycast_start(t_pars *pars, int *x)
 {
+	(void)x;
+	(void)pars;
+	/*
 	pars->ray.hit = 0;
 	pars->ray.perpwalldist = 0;
 	pars->ray.camerax = 2 * *x / (double)pars->resx - 1;
@@ -23,10 +26,13 @@ void	ft_raycast_start(t_pars *pars, int *x)
 	pars->ray.mapy = (int)pars->ray.posy;
 	//printf("%c\n", pars->map[pars->ray.mapx][pars->ray.mapy]);
 	//printf("%c\n", pars->map[pars->py][pars->px]);
+	*/
 }
 
 void	ft_raycast_set_ray(t_pars *pars)
 {
+	(void)pars;
+	/*
 	if (pars->ray.raydiry == 0)
 		pars->ray.deltadistx = 0;
 	else if (pars->ray.raydirx == 0)
@@ -43,4 +49,5 @@ void	ft_raycast_set_ray(t_pars *pars)
 		pars->ray.deltadisty = sqrt(1 + (pars->ray.raydirx *
 			pars->ray.raydirx) / (pars->ray.raydiry *
 			pars->ray.raydiry));
+	*/
 }
