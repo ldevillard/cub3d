@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 12:39:20 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 12:44:56 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 13:46:37 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void			my_mlx_pixel_put(t_pars *values, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = values->data.addr + (y * values->data.line_length + x * (values->data.bits_per_pixel / 8));
+	dst = values->data.addr + (y * values->data.line_length + x\
+			* (values->data.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
-int		ft_press(int keycode, t_data *data)
+
+int				ft_press(int keycode, t_data *data)
 {
 	if (keycode == 53)
 	{
@@ -40,6 +42,7 @@ int		ft_press(int keycode, t_data *data)
 		data->r_right = 1;
 	return (1);
 }
+
 int				ft_release(int keycode, t_data *data)
 {
 	if (keycode == W)
@@ -55,6 +58,25 @@ int				ft_release(int keycode, t_data *data)
 	else if (keycode == RIGHT_ARROW)
 		data->r_right = 0;
 	return (1);
+}
+
+void			ft_raycast_draw(t_pars *values, int *x)
+{
+	int color;
+	int j;
+
+	color = creatergb(200, 200, 0);
+	j = -1;
+	if (values->data.side == 1)
+		color = color / 2;
+	while (++j < values->data.drawstart)
+		my_mlx_pixel_put(values, *x, j + 1, creatergb(values->c_color[0],\
+				values->c_color[1], values->c_color[2]));
+	while (++j < values->data.drawend)
+		my_mlx_pixel_put(values, *x, j, color);
+	while (++j < values->resy)
+		my_mlx_pixel_put(values, *x, j, creatergb(values->f_color[0],\
+				values->f_color[1], values->f_color[2]));
 }
 
 unsigned long	creatergb(int r, int g, int b)

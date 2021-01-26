@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 12:46:51 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 13:23:51 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 14:21:28 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,15 @@ void	ft_raycast_start(t_pars *values)
 }
 
 void	ft_raycast_set(t_pars *values, int *x)
-{		
-	//calculate ray position and direction
-	values->data.camerax = 2 * *x / (double)values->resx - 1; //x-coordinate in camera space
-	values->data.raydirx = values->data.dirx + values->data.planex * values->data.camerax;
-	values->data.raydiry = values->data.diry + values->data.planey * values->data.camerax;
-	//which box of the map we're in
+{
+	values->data.camerax = 2 * *x / (double)values->resx - 1;
+	values->data.raydirx = values->data.dirx + values->data.planex\
+		* values->data.camerax;
+	values->data.raydiry = values->data.diry + values->data.planey\
+		* values->data.camerax;
 	values->data.mapx = (int)values->data.posx;
 	values->data.mapy = (int)values->data.posy;
-	//length of ray from one x or y-side to next x or y-side
 	values->data.deltadistx = fabs(1 / values->data.raydirx);
 	values->data.deltadisty = fabs(1 / values->data.raydiry);
 	values->data.hit = 0;
-	//calculate step and initial sideDist
 }

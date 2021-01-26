@@ -1,0 +1,16 @@
+	//DISPLAY
+	printf("RES X %d\n", pars->resx);
+	printf("RES Y %d\n", pars->resy);
+	printf("NO : %s\n", pars->north);
+	printf("SO : %s\n", pars->south);
+	printf("EA : %s\n", pars->east);
+	printf("WE : %s\n", pars->west);
+	printf("S : %s\n", pars->sprite);
+	printf("F : %d,%d,%d\n", pars->f_color[0], pars->f_color[1], pars->f_color[2]);
+	printf("C : %d,%d,%d\n", pars->c_color[0], pars->c_color[1], pars->c_color[2]);
+	
+	printf("SIZELINE : %d\n", pars->sizeline);
+	printf("NBRLINE : %d\n", pars->nbrline);
+	printf("PLAYER : NBR : %d / X : %d / Y : %d / O : %c\n", pars->player, pars->px, pars->py, pars->po);
+	ft_putchar('\n');
+	ft_print_map(pars);

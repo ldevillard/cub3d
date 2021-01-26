@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 13:29:47 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 14:50:25 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ typedef struct	s_data {
 	int		side;
 	double	movespeed;
 	double	rotspeed;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
 }				t_data;
 
 typedef struct	s_pars
@@ -136,5 +139,11 @@ void			ft_move_fb(t_pars *values);
 void			ft_move_rl(t_pars *values);
 void			ft_rot_right(t_pars *values);
 void			ft_rot_left(t_pars *values);
+void			ft_raycast_draw(t_pars *values, int *x);
+void			ft_set_side(t_pars *values);
+void			ft_check_hit(t_pars *values);
+void			ft_calc_ray(t_pars *values);
+int				ft_check_gnl(t_pars *pars, char *file);
+void			ft_check_errors(t_pars *pars, char *file);
 
 #endif

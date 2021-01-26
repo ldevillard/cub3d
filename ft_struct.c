@@ -6,13 +6,13 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 10:28:10 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 14:22:49 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_init_struct(t_pars *pars)
+static void		ft_init_color(t_pars *pars)
 {
 	int i;
 
@@ -23,6 +23,11 @@ void	ft_init_struct(t_pars *pars)
 		pars->f_color[i] = 0;
 		i++;
 	}
+}
+
+void			ft_init_struct(t_pars *pars)
+{
+	ft_init_color(pars);
 	pars->resx = 0;
 	pars->resy = 0;
 	pars->error = 0;
@@ -45,6 +50,3 @@ void	ft_init_struct(t_pars *pars)
 	pars->m_save_line = 0;
 	pars->savemap = NULL;
 }
-
-
-		

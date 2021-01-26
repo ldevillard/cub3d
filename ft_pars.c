@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 12:30:58 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 14:50:36 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,7 @@ void	ft_parsing(char *file, t_pars *pars)
 	int		gnl;
 
 	gnl = 1;
-	if ((fd = open(file, O_DIRECTORY)) != -1)
-	{
-		ft_error("Your .cub is a directory", pars);
-		return ;
-	}
-	if ((fd = open(file, O_RDONLY)) == -1)
-	{
-		ft_error("Invalid file", pars);
-		return ;
-	}
+	fd = ft_check_gnl(pars, file);
 	while (gnl != 0)
 	{
 		gnl = get_next_line(fd, &line);
@@ -54,36 +45,8 @@ void	ft_parsing(char *file, t_pars *pars)
 		free(line);
 	}
 	close(fd);
-	if (!pars->nbrline || !pars->sizeline)
-		ft_error("Missing map", pars);
-	if (!pars->error)
-		ft_pars_map(file, pars);
-	if (pars->player != 1)
-		ft_error("There is no or multiple player in the map", pars);
-	ft_strsdup(pars->map, pars);
-	if (ft_check_wall(pars, pars->px, pars->py) == 0)
-		ft_error("Map isn't closed", pars);
-	
-	//DISPLAY
-	printf("RES X %d\n", pars->resx);
-	printf("RES Y %d\n", pars->resy);
-	printf("NO : %s\n", pars->north);
-	printf("SO : %s\n", pars->south);
-	printf("EA : %s\n", pars->east);
-	printf("WE : %s\n", pars->west);
-	printf("S : %s\n", pars->sprite);
-	printf("F : %d,%d,%d\n", pars->f_color[0], pars->f_color[1], pars->f_color[2]);
-	printf("C : %d,%d,%d\n", pars->c_color[0], pars->c_color[1], pars->c_color[2]);
-	
-	printf("SIZELINE : %d\n", pars->sizeline);
-	printf("NBRLINE : %d\n", pars->nbrline);
-	printf("PLAYER : NBR : %d / X : %d / Y : %d / O : %c\n", pars->player, pars->px, pars->py, pars->po);
-	ft_putchar('\n');
-	//ft_print_map(pars);
-
-	//RAYCAST
+	ft_check_errors(pars, file);
 	ft_mlx(pars);
-	//ft_raycasting(pars);
 }
 
 void	ft_check_file(char *file, t_pars *pars)
@@ -126,6 +89,6 @@ int		main(int ac, char **av)
 	}
 	else
 		printf("Error\nWrong number of arguments\n");
-	ft_free(&pars); //Just for a moment
+	ft_free(&pars);
 	return (0);
 }
