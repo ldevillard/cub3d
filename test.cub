@@ -1,11 +1,11 @@
 R  1280 720
-NO ./textures/redstone.xpm
-SO ./textures/greystone.xpm
-WE ./textures/purplestone.xpm
-EA ./textures/eagle.xpm
+NO ./textures/bookshelf.xpm
+SO ./textures/tnt_side.xpm
+WE ./textures/piston_top.xpm
+EA ./textures/cracked_stone_bricks.xpm
 S ./textures/barrel.xpm
 C 51,204,255
-F 222,184,135
+F 126,189,0
 
 
 
