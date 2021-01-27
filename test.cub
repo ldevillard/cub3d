@@ -4,8 +4,8 @@ SO ./textures/redstone.xpm
 WE ./textures/purplestone.xpm
 EA ./textures/eagle.xpm
 S ./textures/barrel.xpm
-C 0,200,200
-F 200,200,200
+C 0,0,0
+F 100,100,100
 
 
 

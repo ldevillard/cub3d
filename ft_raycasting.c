@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:15:13 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/27 09:56:26 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 11:12:37 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	ft_mlx(t_pars *values)
 	ft_raycast_start(values);
 	ft_init_player(values);
 	values->data.mlx = mlx_init();
-	ft_load_text(values);
+	//ft_load_text(values);
 	values->data.mlx_win = mlx_new_window(values->data.mlx,\
 			values->resx, values->resy, "cub3d");
 	values->data.img = mlx_new_image(values->data.mlx,\
