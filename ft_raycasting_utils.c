@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 12:39:20 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 13:46:37 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 10:15:42 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,20 @@ void			ft_raycast_draw(t_pars *values, int *x)
 {
 	int color;
 	int j;
+	int i;
 
-	color = creatergb(200, 200, 0);
+	color = creatergb(200, 0, 0);
 	j = -1;
+	values->data.drawend = values->resy - values->data.drawstart;
+	i = values->data.drawend;
 	if (values->data.side == 1)
 		color = color / 2;
 	while (++j < values->data.drawstart)
-		my_mlx_pixel_put(values, *x, j + 1, creatergb(values->c_color[0],\
+		my_mlx_pixel_put(values, *x, j, creatergb(values->c_color[0],\
 				values->c_color[1], values->c_color[2]));
-	while (++j < values->data.drawend)
-		my_mlx_pixel_put(values, *x, j, color);
+	if (j <= values->data.drawend)
+		ft_text_print(values, *x, j);
+	j = i;
 	while (++j < values->resy)
 		my_mlx_pixel_put(values, *x, j, creatergb(values->f_color[0],\
 				values->f_color[1], values->f_color[2]));

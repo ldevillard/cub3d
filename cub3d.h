@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 14:50:25 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 10:32:03 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@
 # define S 1
 # define D 2
 
+typedef struct	s_tex
+{
+	int		texdir;
+	double	wallx;
+	int		texx;
+	int		texy;
+	double	step;
+	double	texpos;
+}				t_tex;
+
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
@@ -37,6 +47,8 @@ typedef struct	s_data {
 	int		endian;
 	void	*mlx;
 	void	*mlx_win;
+	int		width;
+	int		height;
 	int		front;
 	int		back;
 	int		right;
@@ -96,6 +108,8 @@ typedef struct	s_pars
 	char		po;
 	char		**savemap;
 	int			m_save_line;
+	t_tex		tex;
+	t_data		texdata[5];
 	t_data		data;
 }				t_pars;
 
@@ -145,5 +159,9 @@ void			ft_check_hit(t_pars *values);
 void			ft_calc_ray(t_pars *values);
 int				ft_check_gnl(t_pars *pars, char *file);
 void			ft_check_errors(t_pars *pars, char *file);
+void			ft_load_text(t_pars *values);
+void			ft_load_tex_addr(t_pars *values);
+void			ft_text_print(t_pars *values, int x, int y);
+void			ft_text_init(t_pars *values);
 
 #endif
