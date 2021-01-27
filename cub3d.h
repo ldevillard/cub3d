@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/27 10:32:03 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 12:20:25 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int				ft_check_gnl(t_pars *pars, char *file);
 void			ft_check_errors(t_pars *pars, char *file);
 void			ft_load_text(t_pars *values);
 void			ft_load_tex_addr(t_pars *values);
-void			ft_text_print(t_pars *values, int x, int y);
+void			ft_text_print(t_pars *values, int x, int *y);
 void			ft_text_init(t_pars *values);
 
 #endif
