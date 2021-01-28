@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 12:46:51 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 14:21:28 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 12:27:38 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_raycast_start(t_pars *values)
 {
-	values->data.movespeed = 0.05;
-	values->data.rotspeed = 0.033 * 1.8;
+	values->data.movespeed = 0.1;
+	values->data.rotspeed = 0.06;
 	values->data.front = 0;
 	values->data.back = 0;
 	values->data.right = 0;

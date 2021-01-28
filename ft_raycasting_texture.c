@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 09:16:47 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/27 14:21:21 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 12:22:29 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ static void		ft_swap_addr(t_pars *values, int x, int *y)
 		values->texdata[values->tex.texdir].addr[values->tex.texy *\
 		values->texdata[values->tex.texdir].line_length + values->tex.texx *\
 		(values->texdata[values->tex.texdir].bits_per_pixel) / 8 + 2];
+	values->data.addr[*y * values->data.line_length + x *\
+			(values->data.bits_per_pixel) / 8 + 3] =
+		values->texdata[values->tex.texdir].addr[values->tex.texy *\
+		values->texdata[values->tex.texdir].line_length + values->tex.texx *\
+		(values->texdata[values->tex.texdir].bits_per_pixel) / 8 + 3];
 }
 
 void			ft_text_print(t_pars *values, int x, int *y)

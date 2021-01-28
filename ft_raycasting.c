@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:15:13 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/27 12:46:19 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 14:16:29 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,27 +89,28 @@ void	ft_init_player(t_pars *values)
 	if (values->po == 'N')
 	{
 		values->data.dirx = -1;
-		values->data.planey = 0.66;
+		values->data.planey = 0.60;
 	}
 	else if (values->po == 'S')
 	{
 		values->data.dirx = 1;
-		values->data.planey = -0.66;
+		values->data.planey = -0.60;
 	}
 	else if (values->po == 'W')
 	{
 		values->data.diry = -1;
-		values->data.planex = -0.66;
+		values->data.planex = -0.60;
 	}
 	else if (values->po == 'E')
 	{
 		values->data.diry = 1;
-		values->data.planex = 0.66;
+		values->data.planex = 0.60;
 	}
 }
 
 void	ft_mlx(t_pars *values)
 {
+	ft_set_spcoord(values);
 	ft_raycast_start(values);
 	ft_init_player(values);
 	values->data.mlx = mlx_init();

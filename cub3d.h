@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/27 12:20:25 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 15:17:41 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@
 # define A 0
 # define S 1
 # define D 2
+
+typedef struct	s_spcoord
+{
+	double	x;
+	double	y;
+	double	d;
+}				t_spcoord;
+
+typedef struct	s_sp
+{
+	int		count;
+}				t_sp;
 
 typedef struct	s_tex
 {
@@ -108,6 +120,8 @@ typedef struct	s_pars
 	char		po;
 	char		**savemap;
 	int			m_save_line;
+	t_sp		sp;
+	t_spcoord	*spcoord;
 	t_tex		tex;
 	t_data		texdata[5];
 	t_data		data;
@@ -163,5 +177,8 @@ void			ft_load_text(t_pars *values);
 void			ft_load_tex_addr(t_pars *values);
 void			ft_text_print(t_pars *values, int x, int *y);
 void			ft_text_init(t_pars *values);
+void			ft_set_spcoord(t_pars *values);
+void			ft_fill_spcoord(t_pars *values);
+void			ft_treat_sprites(t_pars *values);
 
 #endif
