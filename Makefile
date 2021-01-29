@@ -20,7 +20,8 @@ SRCS = ft_errors.c \
 		ft_raycasting2.c \
 		ft_pars2.c \
 		ft_raycasting_texture.c \
-		ft_sprites_init.c
+		ft_sprites_init.c \
+		ft_sprite.c
 
 CC = gcc
 

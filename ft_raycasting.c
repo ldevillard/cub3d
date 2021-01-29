@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:15:13 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/28 14:16:29 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 10:49:29 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ int		ft_raycasting(t_pars *values)
 		ft_check_hit(values);
 		ft_calc_ray(values);
 		ft_raycast_draw(values, &x);
+		values->sp.walldist[x] = values->data.perpwalldist;
 	}
+	ft_sprite(values, &x);
 	ft_move_fb(values);
 	ft_move_rl(values);
 	ft_rot_right(values);
@@ -116,7 +118,7 @@ void	ft_mlx(t_pars *values)
 	values->data.mlx = mlx_init();
 	ft_load_text(values);
 	values->data.mlx_win = mlx_new_window(values->data.mlx,\
-			values->resx, values->resy, "cub3d");
+			values->resx, values->resy, "cub3D");
 	values->data.img = mlx_new_image(values->data.mlx,\
 			values->resx, values->resy);
 	values->data.addr = mlx_get_data_addr(values->data.img,\

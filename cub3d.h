@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/28 15:17:41 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 10:43:46 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ typedef struct	s_spcoord
 typedef struct	s_sp
 {
 	int		count;
+	int		*order;
+	double	*walldist;
+	double	spritex;
+	double	spritey;
+	double	invdet;
+	double	transformx;
+	double	transformy;
+	int		spritescreenx;
+	int		spriteheight;
+	int		spritewidth;
+	int		drawstartx;
+	int		drawstarty;
+	int		drawendy;
+	int		drawendx;
+	
 }				t_sp;
 
 typedef struct	s_tex
@@ -180,5 +195,9 @@ void			ft_text_init(t_pars *values);
 void			ft_set_spcoord(t_pars *values);
 void			ft_fill_spcoord(t_pars *values);
 void			ft_treat_sprites(t_pars *values);
+void			ft_set_sp_order(t_pars *values);
+void			ft_sprite(t_pars *values, int *x);
+void			ft_matrix(t_pars *values, int i);
+void			ft_draw_sprite(t_pars *values, int j, int texx, int stripe);
 
 #endif
