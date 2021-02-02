@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:15:13 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/29 10:49:29 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 10:59:41 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ int		ft_raycasting(t_pars *values)
 		ft_raycast_draw(values, &x);
 		values->sp.walldist[x] = values->data.perpwalldist;
 	}
-	ft_sprite(values, &x);
+	ft_sprite(values);
+	if (values->arg_save)
+		ft_create_bmp(values);
 	ft_move_fb(values);
 	ft_move_rl(values);
 	ft_rot_right(values);

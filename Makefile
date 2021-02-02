@@ -22,8 +22,8 @@ SRCS = ft_errors.c \
 		ft_raycasting_texture.c \
 		ft_sprites_init.c \
 		ft_sprite.c \
-		ft_save.c
-
+		ft_save.c \
+		ft_sprite_utils.c
 CC = gcc
 
 FLAGS = -c -Wall -Wextra -Werror 

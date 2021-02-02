@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:43 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/02/02 09:18:00 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 09:20:30 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int		main(int ac, char **av)
 	else if (ac == 3 && ft_check_second_arg(av[2]))
 	{
 		pars.arg_save++;
-		printf("SAVE\n");
 		ft_check_file(av[1], &pars);
 	}
 	else

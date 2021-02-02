@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/02/02 09:17:13 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 11:05:48 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct	s_sp
 	int		drawstarty;
 	int		drawendy;
 	int		drawendx;
-	
 }				t_sp;
 
 typedef struct	s_tex
@@ -197,9 +196,14 @@ void			ft_set_spcoord(t_pars *values);
 void			ft_fill_spcoord(t_pars *values);
 void			ft_treat_sprites(t_pars *values);
 void			ft_set_sp_order(t_pars *values);
-void			ft_sprite(t_pars *values, int *x);
+void			ft_sprite(t_pars *values);
 void			ft_matrix(t_pars *values, int i);
 void			ft_draw_sprite(t_pars *values, int j, int texx, int stripe);
 int				ft_check_second_arg(char *str);
+void			ft_create_bmp(t_pars *values);
+void			ft_header_bmp(t_pars *value, int fd);
+void			set_sp_addr(t_pars *values, int j, int texx, int stripe);
+void			ft_buf_draw_sp(t_pars *values, int j, int texx, int stripe);
+void			ft_matrix_two(t_pars *values);
 
 #endif
