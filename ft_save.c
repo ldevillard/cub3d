@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 09:07:35 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/02/02 10:46:14 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 12:16:25 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	ft_header_bmp(t_pars *values, int fd)
 	tmp = 14 + 40 + 4 * values->resx * values->resy;
 	write(fd, &tmp, 4);
 	tmp = 0;
-	write(fd, &tmp, 2);
-	write(fd, &tmp, 2);
+	write(fd, &tmp, 4);
 	tmp = 54;
 	write(fd, &tmp, 4);
 	tmp = 40;
