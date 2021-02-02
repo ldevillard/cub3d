@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:26:19 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/29 10:43:46 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 09:17:13 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct	s_pars
 	char		po;
 	char		**savemap;
 	int			m_save_line;
+	int			arg_save;
 	t_sp		sp;
 	t_spcoord	*spcoord;
 	t_tex		tex;
@@ -199,5 +200,6 @@ void			ft_set_sp_order(t_pars *values);
 void			ft_sprite(t_pars *values, int *x);
 void			ft_matrix(t_pars *values, int i);
 void			ft_draw_sprite(t_pars *values, int j, int texx, int stripe);
+int				ft_check_second_arg(char *str);
 
 #endif

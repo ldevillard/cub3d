@@ -6,7 +6,7 @@
 /*   By: ldevilla <ldevilla@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 08:47:01 by ldevilla          #+#    #+#             */
-/*   Updated: 2021/01/26 14:22:49 by ldevilla         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 09:17:36 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void		ft_init_color(t_pars *pars)
 void			ft_init_struct(t_pars *pars)
 {
 	ft_init_color(pars);
+	pars->arg_save = 0;
 	pars->resx = 0;
 	pars->resy = 0;
 	pars->error = 0;

@@ -1,11 +1,11 @@
 R 1280 720
 NO ./textures/bookshelf.xpm
-C  51,204,255
 SO ./textures/tnt_side.xpm
 WE ./textures/piston_top.xpm
 EA ./textures/cracked_stone_bricks.xpm
 S ./textures/bamboo.xpm
 F 155,62,62
+C 51,204,255
 
 11111111111111111111
 10000000000102020201
