@@ -54,6 +54,7 @@ fclean : clean
 	rm -rf *.o
 	rm -rf *.a
 	rm -rf cub3D
+	rm -rf libmlx.dylib
 
 re : fclean all
 
