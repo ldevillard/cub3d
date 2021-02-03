@@ -13,6 +13,10 @@ make && ./cub3D test.cub
 make && ./cub3D test.cub --save && open pic.bmp
   ```
 - to create a .bmp file who's the first render of the game
+ ```
+leaks -atExit -- ./'your executable' '--save to test with first render'
+  ```
+- to check leaks, you can also use 'Activity Monitor' to see if you have leaks during execution
 #
 ## Tips :
 - 
@@ -38,8 +42,8 @@ int		ft_check_wall(t_pars *pars, int x, int y)
 	return (ret);
 }
 ```
-- Like the paint pot tool, this recursive algorythm will help you to check if the map is entoured by walls.
-- A lot of GNL and treat line per line to check every error cases.
+- Like the paint pot tool, this recursive algorythm will help you to check if the map is entoured by walls
+- A lot of GNL and treat line per line to check every error cases
 #
 ### For Raycast :
 - Make searches about vectors and trigonometry
